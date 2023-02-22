@@ -1,0 +1,1386 @@
+
+NTI_AVR_Drivers.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000007e2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000022  00800060  000007e2  00000856  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000878  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000008a8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000130  00000000  00000000  000008e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001b5b  00000000  00000000  00000a14  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000b7d  00000000  00000000  0000256f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000cb1  00000000  00000000  000030ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001cc  00000000  00000000  00003da0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000007a5  00000000  00000000  00003f6c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000c28  00000000  00000000  00004711  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000b0  00000000  00000000  00005339  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 ee       	ldi	r30, 0xE2	; 226
+  68:	f7 e0       	ldi	r31, 0x07	; 7
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 38       	cpi	r26, 0x82	; 130
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 78 02 	call	0x4f0	; 0x4f0 <main>
+  7a:	0c 94 ef 03 	jmp	0x7de	; 0x7de <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <button_viInit>:
+
+
+/***************** Funtions protypes **********************/
+
+void button_viInit(void)
+{
+  82:	cf 93       	push	r28
+	u8 buttonIndex =0;
+	for(buttonIndex=0; buttonIndex < Buttons_count ; buttonIndex++)
+  84:	c0 e0       	ldi	r28, 0x00	; 0
+  86:	0e c0       	rjmp	.+28     	; 0xa4 <button_viInit+0x22>
+	{
+		dio_vidConfigChannel(Button_configurations[buttonIndex].bport,Button_configurations[buttonIndex].bchannel,INPUT);
+  88:	ec 2f       	mov	r30, r28
+  8a:	f0 e0       	ldi	r31, 0x00	; 0
+  8c:	ee 0f       	add	r30, r30
+  8e:	ff 1f       	adc	r31, r31
+  90:	ee 0f       	add	r30, r30
+  92:	ff 1f       	adc	r31, r31
+  94:	ef 59       	subi	r30, 0x9F	; 159
+  96:	ff 4f       	sbci	r31, 0xFF	; 255
+  98:	40 e0       	ldi	r20, 0x00	; 0
+  9a:	62 81       	ldd	r22, Z+2	; 0x02
+  9c:	81 81       	ldd	r24, Z+1	; 0x01
+  9e:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+/***************** Funtions protypes **********************/
+
+void button_viInit(void)
+{
+	u8 buttonIndex =0;
+	for(buttonIndex=0; buttonIndex < Buttons_count ; buttonIndex++)
+  a2:	cf 5f       	subi	r28, 0xFF	; 255
+  a4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  a8:	c8 17       	cp	r28, r24
+  aa:	70 f3       	brcs	.-36     	; 0x88 <button_viInit+0x6>
+	{
+		dio_vidConfigChannel(Button_configurations[buttonIndex].bport,Button_configurations[buttonIndex].bchannel,INPUT);
+	}
+}
+  ac:	cf 91       	pop	r28
+  ae:	08 95       	ret
+
+000000b0 <button_getState>:
+Button_State_t button_getState(Button_Num_t buttonx)
+{
+  b0:	cf 93       	push	r28
+	u8 buttonIndex =0;
+	dio_level_t buttonChannelStatus = STD_LOW ;
+	Button_State_t buttonState = NOT_PRESSED;
+	for(buttonIndex=0; buttonIndex < Buttons_count ; buttonIndex++)
+  b2:	c0 e0       	ldi	r28, 0x00	; 0
+  b4:	1a c0       	rjmp	.+52     	; 0xea <button_getState+0x3a>
+	{
+		if(buttonx == Button_configurations[buttonIndex].buttonNum)
+  b6:	2c 2f       	mov	r18, r28
+  b8:	30 e0       	ldi	r19, 0x00	; 0
+  ba:	f9 01       	movw	r30, r18
+  bc:	ee 0f       	add	r30, r30
+  be:	ff 1f       	adc	r31, r31
+  c0:	ee 0f       	add	r30, r30
+  c2:	ff 1f       	adc	r31, r31
+  c4:	ef 59       	subi	r30, 0x9F	; 159
+  c6:	ff 4f       	sbci	r31, 0xFF	; 255
+  c8:	90 81       	ld	r25, Z
+  ca:	98 13       	cpse	r25, r24
+  cc:	0d c0       	rjmp	.+26     	; 0xe8 <button_getState+0x38>
+		{
+			buttonChannelStatus=dio_dioLevelReadChannel(Button_configurations[buttonIndex].bport,Button_configurations[buttonIndex].bchannel);
+  ce:	22 0f       	add	r18, r18
+  d0:	33 1f       	adc	r19, r19
+  d2:	22 0f       	add	r18, r18
+  d4:	33 1f       	adc	r19, r19
+  d6:	f9 01       	movw	r30, r18
+  d8:	ef 59       	subi	r30, 0x9F	; 159
+  da:	ff 4f       	sbci	r31, 0xFF	; 255
+  dc:	62 81       	ldd	r22, Z+2	; 0x02
+  de:	81 81       	ldd	r24, Z+1	; 0x01
+  e0:	0e 94 b2 03 	call	0x764	; 0x764 <dio_dioLevelReadChannel>
+  e4:	98 2f       	mov	r25, r24
+			break;
+  e6:	06 c0       	rjmp	.+12     	; 0xf4 <button_getState+0x44>
+Button_State_t button_getState(Button_Num_t buttonx)
+{
+	u8 buttonIndex =0;
+	dio_level_t buttonChannelStatus = STD_LOW ;
+	Button_State_t buttonState = NOT_PRESSED;
+	for(buttonIndex=0; buttonIndex < Buttons_count ; buttonIndex++)
+  e8:	cf 5f       	subi	r28, 0xFF	; 255
+  ea:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  ee:	c9 17       	cp	r28, r25
+  f0:	10 f3       	brcs	.-60     	; 0xb6 <button_getState+0x6>
+	}
+}
+Button_State_t button_getState(Button_Num_t buttonx)
+{
+	u8 buttonIndex =0;
+	dio_level_t buttonChannelStatus = STD_LOW ;
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+			buttonChannelStatus=dio_dioLevelReadChannel(Button_configurations[buttonIndex].bport,Button_configurations[buttonIndex].bchannel);
+			break;
+		}
+	}
+	
+	if((((buttonChannelStatus == STD_HIGH) && (Button_configurations[buttonIndex].pullState == PULL_DOWN)) )||((buttonChannelStatus == STD_LOW) && (Button_configurations[buttonIndex].pullState == PULL_UP)))
+  f4:	91 30       	cpi	r25, 0x01	; 1
+  f6:	59 f4       	brne	.+22     	; 0x10e <button_getState+0x5e>
+  f8:	ec 2f       	mov	r30, r28
+  fa:	f0 e0       	ldi	r31, 0x00	; 0
+  fc:	ee 0f       	add	r30, r30
+  fe:	ff 1f       	adc	r31, r31
+ 100:	ee 0f       	add	r30, r30
+ 102:	ff 1f       	adc	r31, r31
+ 104:	ef 59       	subi	r30, 0x9F	; 159
+ 106:	ff 4f       	sbci	r31, 0xFF	; 255
+ 108:	83 81       	ldd	r24, Z+3	; 0x03
+ 10a:	81 30       	cpi	r24, 0x01	; 1
+ 10c:	79 f0       	breq	.+30     	; 0x12c <button_getState+0x7c>
+ 10e:	91 11       	cpse	r25, r1
+ 110:	0f c0       	rjmp	.+30     	; 0x130 <button_getState+0x80>
+ 112:	ec 2f       	mov	r30, r28
+ 114:	f0 e0       	ldi	r31, 0x00	; 0
+ 116:	ee 0f       	add	r30, r30
+ 118:	ff 1f       	adc	r31, r31
+ 11a:	ee 0f       	add	r30, r30
+ 11c:	ff 1f       	adc	r31, r31
+ 11e:	ef 59       	subi	r30, 0x9F	; 159
+ 120:	ff 4f       	sbci	r31, 0xFF	; 255
+ 122:	83 81       	ldd	r24, Z+3	; 0x03
+ 124:	88 23       	and	r24, r24
+ 126:	31 f0       	breq	.+12     	; 0x134 <button_getState+0x84>
+}
+Button_State_t button_getState(Button_Num_t buttonx)
+{
+	u8 buttonIndex =0;
+	dio_level_t buttonChannelStatus = STD_LOW ;
+	Button_State_t buttonState = NOT_PRESSED;
+ 128:	80 e0       	ldi	r24, 0x00	; 0
+ 12a:	05 c0       	rjmp	.+10     	; 0x136 <button_getState+0x86>
+		}
+	}
+	
+	if((((buttonChannelStatus == STD_HIGH) && (Button_configurations[buttonIndex].pullState == PULL_DOWN)) )||((buttonChannelStatus == STD_LOW) && (Button_configurations[buttonIndex].pullState == PULL_UP)))
+	{
+		buttonState = PRESSED;
+ 12c:	81 e0       	ldi	r24, 0x01	; 1
+ 12e:	03 c0       	rjmp	.+6      	; 0x136 <button_getState+0x86>
+}
+Button_State_t button_getState(Button_Num_t buttonx)
+{
+	u8 buttonIndex =0;
+	dio_level_t buttonChannelStatus = STD_LOW ;
+	Button_State_t buttonState = NOT_PRESSED;
+ 130:	80 e0       	ldi	r24, 0x00	; 0
+ 132:	01 c0       	rjmp	.+2      	; 0x136 <button_getState+0x86>
+		}
+	}
+	
+	if((((buttonChannelStatus == STD_HIGH) && (Button_configurations[buttonIndex].pullState == PULL_DOWN)) )||((buttonChannelStatus == STD_LOW) && (Button_configurations[buttonIndex].pullState == PULL_UP)))
+	{
+		buttonState = PRESSED;
+ 134:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	if((((buttonChannelStatus == STD_HIGH) && (Button_configurations[buttonIndex].pullState == PULL_UP)) ||((buttonChannelStatus == STD_LOW) && (Button_configurations[buttonIndex].pullState == PULL_DOWN))))
+ 136:	91 30       	cpi	r25, 0x01	; 1
+ 138:	59 f4       	brne	.+22     	; 0x150 <button_getState+0xa0>
+ 13a:	ec 2f       	mov	r30, r28
+ 13c:	f0 e0       	ldi	r31, 0x00	; 0
+ 13e:	ee 0f       	add	r30, r30
+ 140:	ff 1f       	adc	r31, r31
+ 142:	ee 0f       	add	r30, r30
+ 144:	ff 1f       	adc	r31, r31
+ 146:	ef 59       	subi	r30, 0x9F	; 159
+ 148:	ff 4f       	sbci	r31, 0xFF	; 255
+ 14a:	23 81       	ldd	r18, Z+3	; 0x03
+ 14c:	22 23       	and	r18, r18
+ 14e:	71 f0       	breq	.+28     	; 0x16c <button_getState+0xbc>
+ 150:	91 11       	cpse	r25, r1
+ 152:	0f c0       	rjmp	.+30     	; 0x172 <button_getState+0xc2>
+ 154:	ec 2f       	mov	r30, r28
+ 156:	f0 e0       	ldi	r31, 0x00	; 0
+ 158:	ee 0f       	add	r30, r30
+ 15a:	ff 1f       	adc	r31, r31
+ 15c:	ee 0f       	add	r30, r30
+ 15e:	ff 1f       	adc	r31, r31
+ 160:	ef 59       	subi	r30, 0x9F	; 159
+ 162:	ff 4f       	sbci	r31, 0xFF	; 255
+ 164:	93 81       	ldd	r25, Z+3	; 0x03
+ 166:	91 30       	cpi	r25, 0x01	; 1
+ 168:	21 f4       	brne	.+8      	; 0x172 <button_getState+0xc2>
+ 16a:	02 c0       	rjmp	.+4      	; 0x170 <button_getState+0xc0>
+	{
+		buttonState = NOT_PRESSED;
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
+ 16e:	01 c0       	rjmp	.+2      	; 0x172 <button_getState+0xc2>
+ 170:	80 e0       	ldi	r24, 0x00	; 0
+	}
+	
+	return buttonState;
+	
+}
+ 172:	cf 91       	pop	r28
+ 174:	08 95       	ret
+
+00000176 <led_viInit>:
+
+#include "led.h"
+#include "led_cfg.h"
+
+void led_viInit(void)
+{
+ 176:	cf 93       	push	r28
+	u8 ledIndex=0;
+	for(ledIndex=0 ; ledIndex < ledsCount ; ledIndex++)
+ 178:	c0 e0       	ldi	r28, 0x00	; 0
+ 17a:	0e c0       	rjmp	.+28     	; 0x198 <led_viInit+0x22>
+	{
+		dio_vidConfigChannel(ledsConfigurations[ledIndex].portn,ledsConfigurations[ledIndex].ledchannel,OUTPUT);
+ 17c:	ec 2f       	mov	r30, r28
+ 17e:	f0 e0       	ldi	r31, 0x00	; 0
+ 180:	ee 0f       	add	r30, r30
+ 182:	ff 1f       	adc	r31, r31
+ 184:	ee 0f       	add	r30, r30
+ 186:	ff 1f       	adc	r31, r31
+ 188:	ee 58       	subi	r30, 0x8E	; 142
+ 18a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 18c:	41 e0       	ldi	r20, 0x01	; 1
+ 18e:	62 81       	ldd	r22, Z+2	; 0x02
+ 190:	81 81       	ldd	r24, Z+1	; 0x01
+ 192:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+#include "led_cfg.h"
+
+void led_viInit(void)
+{
+	u8 ledIndex=0;
+	for(ledIndex=0 ; ledIndex < ledsCount ; ledIndex++)
+ 196:	cf 5f       	subi	r28, 0xFF	; 255
+ 198:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <ledsCount>
+ 19c:	c8 17       	cp	r28, r24
+ 19e:	70 f3       	brcs	.-36     	; 0x17c <led_viInit+0x6>
+	{
+		dio_vidConfigChannel(ledsConfigurations[ledIndex].portn,ledsConfigurations[ledIndex].ledchannel,OUTPUT);
+	}
+}
+ 1a0:	cf 91       	pop	r28
+ 1a2:	08 95       	ret
+
+000001a4 <led_viOn>:
+void led_viOn(Led_t ledx)
+{
+ 1a4:	cf 93       	push	r28
+ 1a6:	df 93       	push	r29
+ 1a8:	d8 2f       	mov	r29, r24
+	u8 ledIndex=0;
+	for(ledIndex=0 ; ledIndex < ledsCount ; ledIndex++)
+ 1aa:	c0 e0       	ldi	r28, 0x00	; 0
+ 1ac:	32 c0       	rjmp	.+100    	; 0x212 <led_viOn+0x6e>
+	{
+		if(ledsConfigurations[ledIndex].ledn == ledx)
+ 1ae:	8c 2f       	mov	r24, r28
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	fc 01       	movw	r30, r24
+ 1b4:	ee 0f       	add	r30, r30
+ 1b6:	ff 1f       	adc	r31, r31
+ 1b8:	ee 0f       	add	r30, r30
+ 1ba:	ff 1f       	adc	r31, r31
+ 1bc:	ee 58       	subi	r30, 0x8E	; 142
+ 1be:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1c0:	20 81       	ld	r18, Z
+ 1c2:	2d 13       	cpse	r18, r29
+ 1c4:	25 c0       	rjmp	.+74     	; 0x210 <led_viOn+0x6c>
+		{
+			if(ledsConfigurations[ledIndex].ledactive == LED_ACTIVE_HIGH)
+ 1c6:	fc 01       	movw	r30, r24
+ 1c8:	ee 0f       	add	r30, r30
+ 1ca:	ff 1f       	adc	r31, r31
+ 1cc:	ee 0f       	add	r30, r30
+ 1ce:	ff 1f       	adc	r31, r31
+ 1d0:	ee 58       	subi	r30, 0x8E	; 142
+ 1d2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1d4:	23 81       	ldd	r18, Z+3	; 0x03
+ 1d6:	21 30       	cpi	r18, 0x01	; 1
+ 1d8:	69 f4       	brne	.+26     	; 0x1f4 <led_viOn+0x50>
+			{
+				dio_vidWriteChannel(ledsConfigurations[ledIndex].portn,ledsConfigurations[ledIndex].ledchannel,STD_HIGH);
+ 1da:	88 0f       	add	r24, r24
+ 1dc:	99 1f       	adc	r25, r25
+ 1de:	88 0f       	add	r24, r24
+ 1e0:	99 1f       	adc	r25, r25
+ 1e2:	fc 01       	movw	r30, r24
+ 1e4:	ee 58       	subi	r30, 0x8E	; 142
+ 1e6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1e8:	41 e0       	ldi	r20, 0x01	; 1
+ 1ea:	62 81       	ldd	r22, Z+2	; 0x02
+ 1ec:	81 81       	ldd	r24, Z+1	; 0x01
+ 1ee:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 1f2:	0e c0       	rjmp	.+28     	; 0x210 <led_viOn+0x6c>
+			}
+			else if(ledsConfigurations[ledIndex].ledactive == LED_ACTIVE_LOW)
+ 1f4:	21 11       	cpse	r18, r1
+ 1f6:	0c c0       	rjmp	.+24     	; 0x210 <led_viOn+0x6c>
+			{
+				dio_vidWriteChannel(ledsConfigurations[ledIndex].portn,ledsConfigurations[ledIndex].ledchannel,STD_LOW);
+ 1f8:	88 0f       	add	r24, r24
+ 1fa:	99 1f       	adc	r25, r25
+ 1fc:	88 0f       	add	r24, r24
+ 1fe:	99 1f       	adc	r25, r25
+ 200:	fc 01       	movw	r30, r24
+ 202:	ee 58       	subi	r30, 0x8E	; 142
+ 204:	ff 4f       	sbci	r31, 0xFF	; 255
+ 206:	40 e0       	ldi	r20, 0x00	; 0
+ 208:	62 81       	ldd	r22, Z+2	; 0x02
+ 20a:	81 81       	ldd	r24, Z+1	; 0x01
+ 20c:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	}
+}
+void led_viOn(Led_t ledx)
+{
+	u8 ledIndex=0;
+	for(ledIndex=0 ; ledIndex < ledsCount ; ledIndex++)
+ 210:	cf 5f       	subi	r28, 0xFF	; 255
+ 212:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <ledsCount>
+ 216:	c8 17       	cp	r28, r24
+ 218:	50 f2       	brcs	.-108    	; 0x1ae <led_viOn+0xa>
+		}
+		
+	}
+	
+	
+}
+ 21a:	df 91       	pop	r29
+ 21c:	cf 91       	pop	r28
+ 21e:	08 95       	ret
+
+00000220 <led_viOff>:
+void led_viOff(Led_t ledx)
+{
+ 220:	cf 93       	push	r28
+ 222:	df 93       	push	r29
+ 224:	d8 2f       	mov	r29, r24
+	u8 ledIndex=0;
+	for(ledIndex=0 ; ledIndex < ledsCount ; ledIndex++)
+ 226:	c0 e0       	ldi	r28, 0x00	; 0
+ 228:	32 c0       	rjmp	.+100    	; 0x28e <led_viOff+0x6e>
+	{
+		if(ledsConfigurations[ledIndex].ledn == ledx)
+ 22a:	8c 2f       	mov	r24, r28
+ 22c:	90 e0       	ldi	r25, 0x00	; 0
+ 22e:	fc 01       	movw	r30, r24
+ 230:	ee 0f       	add	r30, r30
+ 232:	ff 1f       	adc	r31, r31
+ 234:	ee 0f       	add	r30, r30
+ 236:	ff 1f       	adc	r31, r31
+ 238:	ee 58       	subi	r30, 0x8E	; 142
+ 23a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 23c:	20 81       	ld	r18, Z
+ 23e:	2d 13       	cpse	r18, r29
+ 240:	25 c0       	rjmp	.+74     	; 0x28c <led_viOff+0x6c>
+		{
+			if(ledsConfigurations[ledIndex].ledactive == LED_ACTIVE_HIGH)
+ 242:	fc 01       	movw	r30, r24
+ 244:	ee 0f       	add	r30, r30
+ 246:	ff 1f       	adc	r31, r31
+ 248:	ee 0f       	add	r30, r30
+ 24a:	ff 1f       	adc	r31, r31
+ 24c:	ee 58       	subi	r30, 0x8E	; 142
+ 24e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 250:	23 81       	ldd	r18, Z+3	; 0x03
+ 252:	21 30       	cpi	r18, 0x01	; 1
+ 254:	69 f4       	brne	.+26     	; 0x270 <led_viOff+0x50>
+			{
+				dio_vidWriteChannel(ledsConfigurations[ledIndex].portn,ledsConfigurations[ledIndex].ledchannel,STD_LOW);
+ 256:	88 0f       	add	r24, r24
+ 258:	99 1f       	adc	r25, r25
+ 25a:	88 0f       	add	r24, r24
+ 25c:	99 1f       	adc	r25, r25
+ 25e:	fc 01       	movw	r30, r24
+ 260:	ee 58       	subi	r30, 0x8E	; 142
+ 262:	ff 4f       	sbci	r31, 0xFF	; 255
+ 264:	40 e0       	ldi	r20, 0x00	; 0
+ 266:	62 81       	ldd	r22, Z+2	; 0x02
+ 268:	81 81       	ldd	r24, Z+1	; 0x01
+ 26a:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 26e:	0e c0       	rjmp	.+28     	; 0x28c <led_viOff+0x6c>
+			}
+			else if(ledsConfigurations[ledIndex].ledactive == LED_ACTIVE_LOW)
+ 270:	21 11       	cpse	r18, r1
+ 272:	0c c0       	rjmp	.+24     	; 0x28c <led_viOff+0x6c>
+			{
+				dio_vidWriteChannel(ledsConfigurations[ledIndex].portn,ledsConfigurations[ledIndex].ledchannel,STD_HIGH);
+ 274:	88 0f       	add	r24, r24
+ 276:	99 1f       	adc	r25, r25
+ 278:	88 0f       	add	r24, r24
+ 27a:	99 1f       	adc	r25, r25
+ 27c:	fc 01       	movw	r30, r24
+ 27e:	ee 58       	subi	r30, 0x8E	; 142
+ 280:	ff 4f       	sbci	r31, 0xFF	; 255
+ 282:	41 e0       	ldi	r20, 0x01	; 1
+ 284:	62 81       	ldd	r22, Z+2	; 0x02
+ 286:	81 81       	ldd	r24, Z+1	; 0x01
+ 288:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	
+}
+void led_viOff(Led_t ledx)
+{
+	u8 ledIndex=0;
+	for(ledIndex=0 ; ledIndex < ledsCount ; ledIndex++)
+ 28c:	cf 5f       	subi	r28, 0xFF	; 255
+ 28e:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <ledsCount>
+ 292:	c8 17       	cp	r28, r24
+ 294:	50 f2       	brcs	.-108    	; 0x22a <led_viOff+0xa>
+		}
+		
+	}
+	
+	
+}
+ 296:	df 91       	pop	r29
+ 298:	cf 91       	pop	r28
+ 29a:	08 95       	ret
+
+0000029c <SSD_vInit>:
+
+#include <util/delay.h>
+
+void SSD_vInit()
+{
+	dio_vidConfigChannel(SEG_COM1_PORT,SEG_COM1_PIN,OUTPUT);
+ 29c:	41 e0       	ldi	r20, 0x01	; 1
+ 29e:	63 e0       	ldi	r22, 0x03	; 3
+ 2a0:	80 e0       	ldi	r24, 0x00	; 0
+ 2a2:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	dio_vidConfigChannel(SEG_COM2_PORT,SEG_COM2_PIN,OUTPUT);
+ 2a6:	41 e0       	ldi	r20, 0x01	; 1
+ 2a8:	62 e0       	ldi	r22, 0x02	; 2
+ 2aa:	80 e0       	ldi	r24, 0x00	; 0
+ 2ac:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	dio_vidConfigChannel(SEG_COM3_PORT,SEG_COM3_PIN,OUTPUT);
+ 2b0:	41 e0       	ldi	r20, 0x01	; 1
+ 2b2:	65 e0       	ldi	r22, 0x05	; 5
+ 2b4:	81 e0       	ldi	r24, 0x01	; 1
+ 2b6:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	dio_vidConfigChannel(SEG_COM4_PORT,SEG_COM4_PIN,OUTPUT);
+ 2ba:	41 e0       	ldi	r20, 0x01	; 1
+ 2bc:	66 e0       	ldi	r22, 0x06	; 6
+ 2be:	81 e0       	ldi	r24, 0x01	; 1
+ 2c0:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	
+	dio_vidConfigChannel(SEG_DATA_PORT,SEG_DATA0_PIN,OUTPUT);
+ 2c4:	41 e0       	ldi	r20, 0x01	; 1
+ 2c6:	60 e0       	ldi	r22, 0x00	; 0
+ 2c8:	81 e0       	ldi	r24, 0x01	; 1
+ 2ca:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	dio_vidConfigChannel(SEG_DATA_PORT,SEG_DATA1_PIN,OUTPUT);
+ 2ce:	41 e0       	ldi	r20, 0x01	; 1
+ 2d0:	61 e0       	ldi	r22, 0x01	; 1
+ 2d2:	81 e0       	ldi	r24, 0x01	; 1
+ 2d4:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	dio_vidConfigChannel(SEG_DATA_PORT,SEG_DATA2_PIN,OUTPUT);
+ 2d8:	41 e0       	ldi	r20, 0x01	; 1
+ 2da:	62 e0       	ldi	r22, 0x02	; 2
+ 2dc:	81 e0       	ldi	r24, 0x01	; 1
+ 2de:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+	dio_vidConfigChannel(SEG_DATA_PORT,SEG_DATA3_PIN,OUTPUT);
+ 2e2:	41 e0       	ldi	r20, 0x01	; 1
+ 2e4:	64 e0       	ldi	r22, 0x04	; 4
+ 2e6:	81 e0       	ldi	r24, 0x01	; 1
+ 2e8:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <dio_vidConfigChannel>
+ 2ec:	08 95       	ret
+
+000002ee <SSD_vDisplayDigit>:
+	
+	
+}
+
+void SSD_vDisplayDigit(u8 d,u8 SSD_i)
+{
+ 2ee:	cf 93       	push	r28
+ 2f0:	df 93       	push	r29
+ 2f2:	c8 2f       	mov	r28, r24
+ 2f4:	d6 2f       	mov	r29, r22
+	selectState = STD_LOW;
+	#elif SEG_TYPE == CC_SEG
+	driveState = STD_HIGH ;
+	#endif
+	
+	if (CHECK_BIT(d,0) == STD_HIGH ) dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA0_PIN,driveState);
+ 2f6:	80 ff       	sbrs	r24, 0
+ 2f8:	06 c0       	rjmp	.+12     	; 0x306 <SSD_vDisplayDigit+0x18>
+ 2fa:	41 e0       	ldi	r20, 0x01	; 1
+ 2fc:	60 e0       	ldi	r22, 0x00	; 0
+ 2fe:	81 e0       	ldi	r24, 0x01	; 1
+ 300:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 304:	05 c0       	rjmp	.+10     	; 0x310 <SSD_vDisplayDigit+0x22>
+	else dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA0_PIN,~(driveState) & 0x1) ;
+ 306:	40 e0       	ldi	r20, 0x00	; 0
+ 308:	60 e0       	ldi	r22, 0x00	; 0
+ 30a:	81 e0       	ldi	r24, 0x01	; 1
+ 30c:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	
+	if(CHECK_BIT(d,1)==STD_HIGH) dio_vidWriteChannel(SEG_DATA_PORT, SEG_DATA1_PIN,driveState);
+ 310:	c1 ff       	sbrs	r28, 1
+ 312:	06 c0       	rjmp	.+12     	; 0x320 <SSD_vDisplayDigit+0x32>
+ 314:	41 e0       	ldi	r20, 0x01	; 1
+ 316:	61 e0       	ldi	r22, 0x01	; 1
+ 318:	81 e0       	ldi	r24, 0x01	; 1
+ 31a:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 31e:	05 c0       	rjmp	.+10     	; 0x32a <SSD_vDisplayDigit+0x3c>
+	else dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA1_PIN,~(driveState) & 0x1) ;
+ 320:	40 e0       	ldi	r20, 0x00	; 0
+ 322:	61 e0       	ldi	r22, 0x01	; 1
+ 324:	81 e0       	ldi	r24, 0x01	; 1
+ 326:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	
+	if(CHECK_BIT(d,2) == STD_HIGH) dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA2_PIN,driveState);
+ 32a:	c2 ff       	sbrs	r28, 2
+ 32c:	06 c0       	rjmp	.+12     	; 0x33a <SSD_vDisplayDigit+0x4c>
+ 32e:	41 e0       	ldi	r20, 0x01	; 1
+ 330:	62 e0       	ldi	r22, 0x02	; 2
+ 332:	81 e0       	ldi	r24, 0x01	; 1
+ 334:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 338:	05 c0       	rjmp	.+10     	; 0x344 <SSD_vDisplayDigit+0x56>
+	else dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA2_PIN,~(driveState) & 0x1) ;
+ 33a:	40 e0       	ldi	r20, 0x00	; 0
+ 33c:	62 e0       	ldi	r22, 0x02	; 2
+ 33e:	81 e0       	ldi	r24, 0x01	; 1
+ 340:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	
+	if(CHECK_BIT(d,3)) dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA3_PIN,driveState);
+ 344:	c3 ff       	sbrs	r28, 3
+ 346:	06 c0       	rjmp	.+12     	; 0x354 <SSD_vDisplayDigit+0x66>
+ 348:	41 e0       	ldi	r20, 0x01	; 1
+ 34a:	64 e0       	ldi	r22, 0x04	; 4
+ 34c:	81 e0       	ldi	r24, 0x01	; 1
+ 34e:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 352:	05 c0       	rjmp	.+10     	; 0x35e <SSD_vDisplayDigit+0x70>
+	else dio_vidWriteChannel(SEG_DATA_PORT,SEG_DATA3_PIN,~(driveState) & 0x1) ;
+ 354:	40 e0       	ldi	r20, 0x00	; 0
+ 356:	64 e0       	ldi	r22, 0x04	; 4
+ 358:	81 e0       	ldi	r24, 0x01	; 1
+ 35a:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	
+	if(SSD_i == 0)
+ 35e:	d1 11       	cpse	r29, r1
+ 360:	15 c0       	rjmp	.+42     	; 0x38c <SSD_vDisplayDigit+0x9e>
+	{
+		dio_vidWriteChannel(SEG_COM1_PORT, SEG_COM1_PIN, selectState);
+ 362:	40 e0       	ldi	r20, 0x00	; 0
+ 364:	63 e0       	ldi	r22, 0x03	; 3
+ 366:	80 e0       	ldi	r24, 0x00	; 0
+ 368:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		
+		dio_vidWriteChannel(SEG_COM2_PORT, SEG_COM2_PIN, ~(selectState) &0x01);
+ 36c:	41 e0       	ldi	r20, 0x01	; 1
+ 36e:	62 e0       	ldi	r22, 0x02	; 2
+ 370:	80 e0       	ldi	r24, 0x00	; 0
+ 372:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM3_PORT, SEG_COM3_PIN, ~(selectState) &0x01);
+ 376:	41 e0       	ldi	r20, 0x01	; 1
+ 378:	65 e0       	ldi	r22, 0x05	; 5
+ 37a:	81 e0       	ldi	r24, 0x01	; 1
+ 37c:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM4_PORT, SEG_COM4_PIN, ~(selectState) &0x01);
+ 380:	41 e0       	ldi	r20, 0x01	; 1
+ 382:	66 e0       	ldi	r22, 0x06	; 6
+ 384:	81 e0       	ldi	r24, 0x01	; 1
+ 386:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 38a:	44 c0       	rjmp	.+136    	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+		
+	}
+	else if(SSD_i == 1)
+ 38c:	d1 30       	cpi	r29, 0x01	; 1
+ 38e:	a9 f4       	brne	.+42     	; 0x3ba <SSD_vDisplayDigit+0xcc>
+	{
+		dio_vidWriteChannel(SEG_COM2_PORT, SEG_COM2_PIN, selectState);
+ 390:	40 e0       	ldi	r20, 0x00	; 0
+ 392:	62 e0       	ldi	r22, 0x02	; 2
+ 394:	80 e0       	ldi	r24, 0x00	; 0
+ 396:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		
+		dio_vidWriteChannel(SEG_COM1_PORT, SEG_COM1_PIN, ~(selectState) &0x1);
+ 39a:	41 e0       	ldi	r20, 0x01	; 1
+ 39c:	63 e0       	ldi	r22, 0x03	; 3
+ 39e:	80 e0       	ldi	r24, 0x00	; 0
+ 3a0:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM3_PORT, SEG_COM3_PIN, ~(selectState) &0x1);
+ 3a4:	41 e0       	ldi	r20, 0x01	; 1
+ 3a6:	65 e0       	ldi	r22, 0x05	; 5
+ 3a8:	81 e0       	ldi	r24, 0x01	; 1
+ 3aa:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM4_PORT, SEG_COM4_PIN, ~(selectState) &0x1);
+ 3ae:	41 e0       	ldi	r20, 0x01	; 1
+ 3b0:	66 e0       	ldi	r22, 0x06	; 6
+ 3b2:	81 e0       	ldi	r24, 0x01	; 1
+ 3b4:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 3b8:	2d c0       	rjmp	.+90     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+	    
+	}
+	else if(SSD_i == 2)
+ 3ba:	d2 30       	cpi	r29, 0x02	; 2
+ 3bc:	a9 f4       	brne	.+42     	; 0x3e8 <SSD_vDisplayDigit+0xfa>
+	{
+		dio_vidWriteChannel(SEG_COM3_PORT, SEG_COM3_PIN, selectState);
+ 3be:	40 e0       	ldi	r20, 0x00	; 0
+ 3c0:	65 e0       	ldi	r22, 0x05	; 5
+ 3c2:	81 e0       	ldi	r24, 0x01	; 1
+ 3c4:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		
+		dio_vidWriteChannel(SEG_COM1_PORT, SEG_COM1_PIN, ~(selectState) &0x1);
+ 3c8:	41 e0       	ldi	r20, 0x01	; 1
+ 3ca:	63 e0       	ldi	r22, 0x03	; 3
+ 3cc:	80 e0       	ldi	r24, 0x00	; 0
+ 3ce:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM2_PORT, SEG_COM2_PIN, ~(selectState) &0x1);
+ 3d2:	41 e0       	ldi	r20, 0x01	; 1
+ 3d4:	62 e0       	ldi	r22, 0x02	; 2
+ 3d6:	80 e0       	ldi	r24, 0x00	; 0
+ 3d8:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM4_PORT, SEG_COM4_PIN, ~(selectState) &0x1);
+ 3dc:	41 e0       	ldi	r20, 0x01	; 1
+ 3de:	66 e0       	ldi	r22, 0x06	; 6
+ 3e0:	81 e0       	ldi	r24, 0x01	; 1
+ 3e2:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+ 3e6:	16 c0       	rjmp	.+44     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+	    
+	}
+	else if(SSD_i == 3)
+ 3e8:	d3 30       	cpi	r29, 0x03	; 3
+ 3ea:	a1 f4       	brne	.+40     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+	{
+		dio_vidWriteChannel(SEG_COM4_PORT, SEG_COM4_PIN, selectState);
+ 3ec:	40 e0       	ldi	r20, 0x00	; 0
+ 3ee:	66 e0       	ldi	r22, 0x06	; 6
+ 3f0:	81 e0       	ldi	r24, 0x01	; 1
+ 3f2:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		
+		dio_vidWriteChannel(SEG_COM1_PORT, SEG_COM1_PIN, ~(selectState) &0x1);
+ 3f6:	41 e0       	ldi	r20, 0x01	; 1
+ 3f8:	63 e0       	ldi	r22, 0x03	; 3
+ 3fa:	80 e0       	ldi	r24, 0x00	; 0
+ 3fc:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM2_PORT, SEG_COM2_PIN, ~(selectState) &0x1);
+ 400:	41 e0       	ldi	r20, 0x01	; 1
+ 402:	62 e0       	ldi	r22, 0x02	; 2
+ 404:	80 e0       	ldi	r24, 0x00	; 0
+ 406:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+		dio_vidWriteChannel(SEG_COM3_PORT, SEG_COM3_PIN, ~(selectState) &0x1);
+ 40a:	41 e0       	ldi	r20, 0x01	; 1
+ 40c:	65 e0       	ldi	r22, 0x05	; 5
+ 40e:	81 e0       	ldi	r24, 0x01	; 1
+ 410:	0e 94 45 03 	call	0x68a	; 0x68a <dio_vidWriteChannel>
+	else{
+		SSD_i =0;
+	}	
+	
+	
+}
+ 414:	df 91       	pop	r29
+ 416:	cf 91       	pop	r28
+ 418:	08 95       	ret
+
+0000041a <SSD_vDisplayNum>:
+void SSD_vDisplayNum(u16 num)
+{
+ 41a:	cf 93       	push	r28
+ 41c:	df 93       	push	r29
+ 41e:	00 d0       	rcall	.+0      	; 0x420 <SSD_vDisplayNum+0x6>
+ 420:	00 d0       	rcall	.+0      	; 0x422 <SSD_vDisplayNum+0x8>
+ 422:	cd b7       	in	r28, 0x3d	; 61
+ 424:	de b7       	in	r29, 0x3e	; 62
+ 426:	fc 01       	movw	r30, r24
+	u8 d[SEGMENT_NUM]={0};
+ 428:	19 82       	std	Y+1, r1	; 0x01
+ 42a:	1a 82       	std	Y+2, r1	; 0x02
+ 42c:	1b 82       	std	Y+3, r1	; 0x03
+ 42e:	1c 82       	std	Y+4, r1	; 0x04
+	
+	for(u8 i=0; i<SEGMENT_NUM; i++)
+ 430:	40 e0       	ldi	r20, 0x00	; 0
+ 432:	2d c0       	rjmp	.+90     	; 0x48e <SSD_vDisplayNum+0x74>
+	{
+		d[i]=num%10;
+ 434:	9f 01       	movw	r18, r30
+ 436:	ad ec       	ldi	r26, 0xCD	; 205
+ 438:	bc ec       	ldi	r27, 0xCC	; 204
+ 43a:	0e 94 e0 03 	call	0x7c0	; 0x7c0 <__umulhisi3>
+ 43e:	96 95       	lsr	r25
+ 440:	87 95       	ror	r24
+ 442:	96 95       	lsr	r25
+ 444:	87 95       	ror	r24
+ 446:	96 95       	lsr	r25
+ 448:	87 95       	ror	r24
+ 44a:	9c 01       	movw	r18, r24
+ 44c:	22 0f       	add	r18, r18
+ 44e:	33 1f       	adc	r19, r19
+ 450:	88 0f       	add	r24, r24
+ 452:	99 1f       	adc	r25, r25
+ 454:	88 0f       	add	r24, r24
+ 456:	99 1f       	adc	r25, r25
+ 458:	88 0f       	add	r24, r24
+ 45a:	99 1f       	adc	r25, r25
+ 45c:	82 0f       	add	r24, r18
+ 45e:	93 1f       	adc	r25, r19
+ 460:	9f 01       	movw	r18, r30
+ 462:	28 1b       	sub	r18, r24
+ 464:	39 0b       	sbc	r19, r25
+ 466:	a1 e0       	ldi	r26, 0x01	; 1
+ 468:	b0 e0       	ldi	r27, 0x00	; 0
+ 46a:	ac 0f       	add	r26, r28
+ 46c:	bd 1f       	adc	r27, r29
+ 46e:	a4 0f       	add	r26, r20
+ 470:	b1 1d       	adc	r27, r1
+ 472:	2c 93       	st	X, r18
+		num /=10;
+ 474:	9f 01       	movw	r18, r30
+ 476:	ad ec       	ldi	r26, 0xCD	; 205
+ 478:	bc ec       	ldi	r27, 0xCC	; 204
+ 47a:	0e 94 e0 03 	call	0x7c0	; 0x7c0 <__umulhisi3>
+ 47e:	fc 01       	movw	r30, r24
+ 480:	f6 95       	lsr	r31
+ 482:	e7 95       	ror	r30
+ 484:	f6 95       	lsr	r31
+ 486:	e7 95       	ror	r30
+ 488:	f6 95       	lsr	r31
+ 48a:	e7 95       	ror	r30
+}
+void SSD_vDisplayNum(u16 num)
+{
+	u8 d[SEGMENT_NUM]={0};
+	
+	for(u8 i=0; i<SEGMENT_NUM; i++)
+ 48c:	4f 5f       	subi	r20, 0xFF	; 255
+ 48e:	44 30       	cpi	r20, 0x04	; 4
+ 490:	88 f2       	brcs	.-94     	; 0x434 <SSD_vDisplayNum+0x1a>
+	{
+		d[i]=num%10;
+		num /=10;
+	}
+	
+	SSD_vDisplayDigit(d[0],0);
+ 492:	60 e0       	ldi	r22, 0x00	; 0
+ 494:	89 81       	ldd	r24, Y+1	; 0x01
+ 496:	0e 94 77 01 	call	0x2ee	; 0x2ee <SSD_vDisplayDigit>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 49a:	8f e1       	ldi	r24, 0x1F	; 31
+ 49c:	9e e4       	ldi	r25, 0x4E	; 78
+ 49e:	01 97       	sbiw	r24, 0x01	; 1
+ 4a0:	f1 f7       	brne	.-4      	; 0x49e <SSD_vDisplayNum+0x84>
+ 4a2:	00 c0       	rjmp	.+0      	; 0x4a4 <SSD_vDisplayNum+0x8a>
+ 4a4:	00 00       	nop
+	_delay_ms(5);
+	
+	SSD_vDisplayDigit(d[1],1);
+ 4a6:	61 e0       	ldi	r22, 0x01	; 1
+ 4a8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 4aa:	0e 94 77 01 	call	0x2ee	; 0x2ee <SSD_vDisplayDigit>
+ 4ae:	8f e1       	ldi	r24, 0x1F	; 31
+ 4b0:	9e e4       	ldi	r25, 0x4E	; 78
+ 4b2:	01 97       	sbiw	r24, 0x01	; 1
+ 4b4:	f1 f7       	brne	.-4      	; 0x4b2 <SSD_vDisplayNum+0x98>
+ 4b6:	00 c0       	rjmp	.+0      	; 0x4b8 <SSD_vDisplayNum+0x9e>
+ 4b8:	00 00       	nop
+	_delay_ms(5);
+	
+	SSD_vDisplayDigit(d[2],2);
+ 4ba:	62 e0       	ldi	r22, 0x02	; 2
+ 4bc:	8b 81       	ldd	r24, Y+3	; 0x03
+ 4be:	0e 94 77 01 	call	0x2ee	; 0x2ee <SSD_vDisplayDigit>
+ 4c2:	8f e1       	ldi	r24, 0x1F	; 31
+ 4c4:	9e e4       	ldi	r25, 0x4E	; 78
+ 4c6:	01 97       	sbiw	r24, 0x01	; 1
+ 4c8:	f1 f7       	brne	.-4      	; 0x4c6 <SSD_vDisplayNum+0xac>
+ 4ca:	00 c0       	rjmp	.+0      	; 0x4cc <SSD_vDisplayNum+0xb2>
+ 4cc:	00 00       	nop
+	_delay_ms(5);
+	
+	SSD_vDisplayDigit(d[3],3);
+ 4ce:	63 e0       	ldi	r22, 0x03	; 3
+ 4d0:	8c 81       	ldd	r24, Y+4	; 0x04
+ 4d2:	0e 94 77 01 	call	0x2ee	; 0x2ee <SSD_vDisplayDigit>
+ 4d6:	8f e1       	ldi	r24, 0x1F	; 31
+ 4d8:	9e e4       	ldi	r25, 0x4E	; 78
+ 4da:	01 97       	sbiw	r24, 0x01	; 1
+ 4dc:	f1 f7       	brne	.-4      	; 0x4da <SSD_vDisplayNum+0xc0>
+ 4de:	00 c0       	rjmp	.+0      	; 0x4e0 <SSD_vDisplayNum+0xc6>
+ 4e0:	00 00       	nop
+	_delay_ms(5);
+	
+		
+	
+ 4e2:	0f 90       	pop	r0
+ 4e4:	0f 90       	pop	r0
+ 4e6:	0f 90       	pop	r0
+ 4e8:	0f 90       	pop	r0
+ 4ea:	df 91       	pop	r29
+ 4ec:	cf 91       	pop	r28
+ 4ee:	08 95       	ret
+
+000004f0 <main>:
+int main(void)
+{
+	
+	u8   count=50 , Mod=0;
+	u16 tim=0;
+	SSD_vInit();
+ 4f0:	0e 94 4e 01 	call	0x29c	; 0x29c <SSD_vInit>
+	button_viInit();
+ 4f4:	0e 94 41 00 	call	0x82	; 0x82 <button_viInit>
+	led_viInit();
+ 4f8:	0e 94 bb 00 	call	0x176	; 0x176 <led_viInit>
+
+int main(void)
+{
+	
+	u8   count=50 , Mod=0;
+	u16 tim=0;
+ 4fc:	00 e0       	ldi	r16, 0x00	; 0
+ 4fe:	10 e0       	ldi	r17, 0x00	; 0
+
+
+int main(void)
+{
+	
+	u8   count=50 , Mod=0;
+ 500:	d0 e0       	ldi	r29, 0x00	; 0
+	SSD_vInit();
+	button_viInit();
+	led_viInit();
+    while (1) 
+    {
+		if(Mod == 0)
+ 502:	d1 11       	cpse	r29, r1
+ 504:	30 c0       	rjmp	.+96     	; 0x566 <main+0x76>
+		{
+			// set mode
+			led_viOff(LED_RED);
+ 506:	82 e0       	ldi	r24, 0x02	; 2
+ 508:	0e 94 10 01 	call	0x220	; 0x220 <led_viOff>
+			
+			SSD_vDisplayNum(tim);
+ 50c:	c8 01       	movw	r24, r16
+ 50e:	0e 94 0d 02 	call	0x41a	; 0x41a <SSD_vDisplayNum>
+			if(button_getState(Button_0) == PRESSED)
+ 512:	80 e0       	ldi	r24, 0x00	; 0
+ 514:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 518:	81 30       	cpi	r24, 0x01	; 1
+ 51a:	41 f4       	brne	.+16     	; 0x52c <main+0x3c>
+			{
+				tim+=10;
+ 51c:	06 5f       	subi	r16, 0xF6	; 246
+ 51e:	1f 4f       	sbci	r17, 0xFF	; 255
+				while(button_getState(Button_0) == PRESSED);
+ 520:	80 e0       	ldi	r24, 0x00	; 0
+ 522:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 526:	81 30       	cpi	r24, 0x01	; 1
+ 528:	d9 f3       	breq	.-10     	; 0x520 <main+0x30>
+ 52a:	2e c0       	rjmp	.+92     	; 0x588 <main+0x98>
+			}
+			else if((button_getState(Button_1) == PRESSED)&& (tim >0))
+ 52c:	81 e0       	ldi	r24, 0x01	; 1
+ 52e:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 532:	81 30       	cpi	r24, 0x01	; 1
+ 534:	59 f4       	brne	.+22     	; 0x54c <main+0x5c>
+ 536:	01 15       	cp	r16, r1
+ 538:	11 05       	cpc	r17, r1
+ 53a:	41 f0       	breq	.+16     	; 0x54c <main+0x5c>
+			{
+				tim-=10;
+ 53c:	0a 50       	subi	r16, 0x0A	; 10
+ 53e:	11 09       	sbc	r17, r1
+				while(button_getState(Button_1) == PRESSED);
+ 540:	81 e0       	ldi	r24, 0x01	; 1
+ 542:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 546:	81 30       	cpi	r24, 0x01	; 1
+ 548:	d9 f3       	breq	.-10     	; 0x540 <main+0x50>
+ 54a:	1e c0       	rjmp	.+60     	; 0x588 <main+0x98>
+			}
+			else if((button_getState(Button_3) == PRESSED))
+ 54c:	83 e0       	ldi	r24, 0x03	; 3
+ 54e:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 552:	81 30       	cpi	r24, 0x01	; 1
+ 554:	c9 f4       	brne	.+50     	; 0x588 <main+0x98>
+			{
+				tim=0;
+				while(button_getState(Button_3) == PRESSED);
+ 556:	83 e0       	ldi	r24, 0x03	; 3
+ 558:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 55c:	81 30       	cpi	r24, 0x01	; 1
+ 55e:	d9 f3       	breq	.-10     	; 0x556 <main+0x66>
+				tim-=10;
+				while(button_getState(Button_1) == PRESSED);
+			}
+			else if((button_getState(Button_3) == PRESSED))
+			{
+				tim=0;
+ 560:	00 e0       	ldi	r16, 0x00	; 0
+ 562:	10 e0       	ldi	r17, 0x00	; 0
+ 564:	11 c0       	rjmp	.+34     	; 0x588 <main+0x98>
+				while(button_getState(Button_3) == PRESSED);
+			}
+			
+		}
+		else if(Mod == 1)
+ 566:	d1 30       	cpi	r29, 0x01	; 1
+ 568:	79 f4       	brne	.+30     	; 0x588 <main+0x98>
+		{
+			// timing mode
+			led_viOn(LED_RED);
+ 56a:	82 e0       	ldi	r24, 0x02	; 2
+ 56c:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <led_viOn>
+			 
+			while(count)
+ 570:	c2 e3       	ldi	r28, 0x32	; 50
+ 572:	04 c0       	rjmp	.+8      	; 0x57c <main+0x8c>
+			{
+				SSD_vDisplayNum(tim);
+ 574:	c8 01       	movw	r24, r16
+ 576:	0e 94 0d 02 	call	0x41a	; 0x41a <SSD_vDisplayNum>
+				count--;
+ 57a:	c1 50       	subi	r28, 0x01	; 1
+		else if(Mod == 1)
+		{
+			// timing mode
+			led_viOn(LED_RED);
+			 
+			while(count)
+ 57c:	c1 11       	cpse	r28, r1
+ 57e:	fa cf       	rjmp	.-12     	; 0x574 <main+0x84>
+			{
+				SSD_vDisplayNum(tim);
+				count--;
+			}
+			count =50;
+			tim--;
+ 580:	01 50       	subi	r16, 0x01	; 1
+ 582:	11 09       	sbc	r17, r1
+			if(tim ==0)
+ 584:	09 f4       	brne	.+2      	; 0x588 <main+0x98>
+			{
+				Mod=0;
+ 586:	d0 e0       	ldi	r29, 0x00	; 0
+			}
+		}
+		
+		
+		 if((button_getState(Button_2) == PRESSED) )
+ 588:	82 e0       	ldi	r24, 0x02	; 2
+ 58a:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 58e:	81 30       	cpi	r24, 0x01	; 1
+ 590:	09 f0       	breq	.+2      	; 0x594 <main+0xa4>
+ 592:	b7 cf       	rjmp	.-146    	; 0x502 <main+0x12>
+		{
+			if(Mod == 0) Mod =1 ;else if(Mod==1) Mod =0;
+ 594:	dd 23       	and	r29, r29
+ 596:	19 f0       	breq	.+6      	; 0x59e <main+0xae>
+ 598:	d1 30       	cpi	r29, 0x01	; 1
+ 59a:	21 f4       	brne	.+8      	; 0x5a4 <main+0xb4>
+ 59c:	02 c0       	rjmp	.+4      	; 0x5a2 <main+0xb2>
+ 59e:	d1 e0       	ldi	r29, 0x01	; 1
+ 5a0:	01 c0       	rjmp	.+2      	; 0x5a4 <main+0xb4>
+ 5a2:	d0 e0       	ldi	r29, 0x00	; 0
+			while(button_getState(Button_2) == PRESSED);
+ 5a4:	82 e0       	ldi	r24, 0x02	; 2
+ 5a6:	0e 94 58 00 	call	0xb0	; 0xb0 <button_getState>
+ 5aa:	81 30       	cpi	r24, 0x01	; 1
+ 5ac:	d9 f3       	breq	.-10     	; 0x5a4 <main+0xb4>
+ 5ae:	a9 cf       	rjmp	.-174    	; 0x502 <main+0x12>
+
+000005b0 <dio_vidConfigChannel>:
+	case DIO_PORTC:
+		FLIP_BIT(DIO_PORTC_REG,channel);
+		break;
+
+	case DIO_PORTD:
+		FLIP_BIT(DIO_PORTD_REG,channel);
+ 5b0:	81 30       	cpi	r24, 0x01	; 1
+ 5b2:	01 f1       	breq	.+64     	; 0x5f4 <dio_vidConfigChannel+0x44>
+ 5b4:	30 f0       	brcs	.+12     	; 0x5c2 <dio_vidConfigChannel+0x12>
+ 5b6:	82 30       	cpi	r24, 0x02	; 2
+ 5b8:	b1 f1       	breq	.+108    	; 0x626 <dio_vidConfigChannel+0x76>
+ 5ba:	83 30       	cpi	r24, 0x03	; 3
+ 5bc:	09 f4       	brne	.+2      	; 0x5c0 <dio_vidConfigChannel+0x10>
+ 5be:	4c c0       	rjmp	.+152    	; 0x658 <dio_vidConfigChannel+0xa8>
+ 5c0:	08 95       	ret
+ 5c2:	41 30       	cpi	r20, 0x01	; 1
+ 5c4:	59 f4       	brne	.+22     	; 0x5dc <dio_vidConfigChannel+0x2c>
+ 5c6:	2a b3       	in	r18, 0x1a	; 26
+ 5c8:	81 e0       	ldi	r24, 0x01	; 1
+ 5ca:	90 e0       	ldi	r25, 0x00	; 0
+ 5cc:	02 c0       	rjmp	.+4      	; 0x5d2 <dio_vidConfigChannel+0x22>
+ 5ce:	88 0f       	add	r24, r24
+ 5d0:	99 1f       	adc	r25, r25
+ 5d2:	6a 95       	dec	r22
+ 5d4:	e2 f7       	brpl	.-8      	; 0x5ce <dio_vidConfigChannel+0x1e>
+ 5d6:	82 2b       	or	r24, r18
+ 5d8:	8a bb       	out	0x1a, r24	; 26
+ 5da:	08 95       	ret
+ 5dc:	2a b3       	in	r18, 0x1a	; 26
+ 5de:	81 e0       	ldi	r24, 0x01	; 1
+ 5e0:	90 e0       	ldi	r25, 0x00	; 0
+ 5e2:	02 c0       	rjmp	.+4      	; 0x5e8 <dio_vidConfigChannel+0x38>
+ 5e4:	88 0f       	add	r24, r24
+ 5e6:	99 1f       	adc	r25, r25
+ 5e8:	6a 95       	dec	r22
+ 5ea:	e2 f7       	brpl	.-8      	; 0x5e4 <dio_vidConfigChannel+0x34>
+ 5ec:	80 95       	com	r24
+ 5ee:	82 23       	and	r24, r18
+ 5f0:	8a bb       	out	0x1a, r24	; 26
+ 5f2:	08 95       	ret
+ 5f4:	41 30       	cpi	r20, 0x01	; 1
+ 5f6:	59 f4       	brne	.+22     	; 0x60e <dio_vidConfigChannel+0x5e>
+ 5f8:	27 b3       	in	r18, 0x17	; 23
+ 5fa:	81 e0       	ldi	r24, 0x01	; 1
+ 5fc:	90 e0       	ldi	r25, 0x00	; 0
+ 5fe:	02 c0       	rjmp	.+4      	; 0x604 <dio_vidConfigChannel+0x54>
+ 600:	88 0f       	add	r24, r24
+ 602:	99 1f       	adc	r25, r25
+ 604:	6a 95       	dec	r22
+ 606:	e2 f7       	brpl	.-8      	; 0x600 <dio_vidConfigChannel+0x50>
+ 608:	82 2b       	or	r24, r18
+ 60a:	87 bb       	out	0x17, r24	; 23
+ 60c:	08 95       	ret
+ 60e:	27 b3       	in	r18, 0x17	; 23
+ 610:	81 e0       	ldi	r24, 0x01	; 1
+ 612:	90 e0       	ldi	r25, 0x00	; 0
+ 614:	02 c0       	rjmp	.+4      	; 0x61a <dio_vidConfigChannel+0x6a>
+ 616:	88 0f       	add	r24, r24
+ 618:	99 1f       	adc	r25, r25
+ 61a:	6a 95       	dec	r22
+ 61c:	e2 f7       	brpl	.-8      	; 0x616 <dio_vidConfigChannel+0x66>
+ 61e:	80 95       	com	r24
+ 620:	82 23       	and	r24, r18
+ 622:	87 bb       	out	0x17, r24	; 23
+ 624:	08 95       	ret
+ 626:	41 30       	cpi	r20, 0x01	; 1
+ 628:	59 f4       	brne	.+22     	; 0x640 <dio_vidConfigChannel+0x90>
+ 62a:	24 b3       	in	r18, 0x14	; 20
+ 62c:	81 e0       	ldi	r24, 0x01	; 1
+ 62e:	90 e0       	ldi	r25, 0x00	; 0
+ 630:	02 c0       	rjmp	.+4      	; 0x636 <dio_vidConfigChannel+0x86>
+ 632:	88 0f       	add	r24, r24
+ 634:	99 1f       	adc	r25, r25
+ 636:	6a 95       	dec	r22
+ 638:	e2 f7       	brpl	.-8      	; 0x632 <dio_vidConfigChannel+0x82>
+ 63a:	82 2b       	or	r24, r18
+ 63c:	84 bb       	out	0x14, r24	; 20
+ 63e:	08 95       	ret
+ 640:	24 b3       	in	r18, 0x14	; 20
+ 642:	81 e0       	ldi	r24, 0x01	; 1
+ 644:	90 e0       	ldi	r25, 0x00	; 0
+ 646:	02 c0       	rjmp	.+4      	; 0x64c <dio_vidConfigChannel+0x9c>
+ 648:	88 0f       	add	r24, r24
+ 64a:	99 1f       	adc	r25, r25
+ 64c:	6a 95       	dec	r22
+ 64e:	e2 f7       	brpl	.-8      	; 0x648 <dio_vidConfigChannel+0x98>
+ 650:	80 95       	com	r24
+ 652:	82 23       	and	r24, r18
+ 654:	84 bb       	out	0x14, r24	; 20
+ 656:	08 95       	ret
+ 658:	41 30       	cpi	r20, 0x01	; 1
+ 65a:	59 f4       	brne	.+22     	; 0x672 <dio_vidConfigChannel+0xc2>
+ 65c:	21 b3       	in	r18, 0x11	; 17
+ 65e:	81 e0       	ldi	r24, 0x01	; 1
+ 660:	90 e0       	ldi	r25, 0x00	; 0
+ 662:	02 c0       	rjmp	.+4      	; 0x668 <dio_vidConfigChannel+0xb8>
+ 664:	88 0f       	add	r24, r24
+ 666:	99 1f       	adc	r25, r25
+ 668:	6a 95       	dec	r22
+ 66a:	e2 f7       	brpl	.-8      	; 0x664 <dio_vidConfigChannel+0xb4>
+ 66c:	82 2b       	or	r24, r18
+ 66e:	81 bb       	out	0x11, r24	; 17
+ 670:	08 95       	ret
+ 672:	21 b3       	in	r18, 0x11	; 17
+ 674:	81 e0       	ldi	r24, 0x01	; 1
+ 676:	90 e0       	ldi	r25, 0x00	; 0
+ 678:	02 c0       	rjmp	.+4      	; 0x67e <dio_vidConfigChannel+0xce>
+ 67a:	88 0f       	add	r24, r24
+ 67c:	99 1f       	adc	r25, r25
+ 67e:	6a 95       	dec	r22
+ 680:	e2 f7       	brpl	.-8      	; 0x67a <dio_vidConfigChannel+0xca>
+ 682:	80 95       	com	r24
+ 684:	82 23       	and	r24, r18
+ 686:	81 bb       	out	0x11, r24	; 17
+ 688:	08 95       	ret
+
+0000068a <dio_vidWriteChannel>:
+ 68a:	81 30       	cpi	r24, 0x01	; 1
+ 68c:	01 f1       	breq	.+64     	; 0x6ce <dio_vidWriteChannel+0x44>
+ 68e:	30 f0       	brcs	.+12     	; 0x69c <dio_vidWriteChannel+0x12>
+ 690:	82 30       	cpi	r24, 0x02	; 2
+ 692:	b1 f1       	breq	.+108    	; 0x700 <dio_vidWriteChannel+0x76>
+ 694:	83 30       	cpi	r24, 0x03	; 3
+ 696:	09 f4       	brne	.+2      	; 0x69a <dio_vidWriteChannel+0x10>
+ 698:	4c c0       	rjmp	.+152    	; 0x732 <dio_vidWriteChannel+0xa8>
+ 69a:	08 95       	ret
+ 69c:	41 11       	cpse	r20, r1
+ 69e:	0c c0       	rjmp	.+24     	; 0x6b8 <dio_vidWriteChannel+0x2e>
+ 6a0:	2b b3       	in	r18, 0x1b	; 27
+ 6a2:	81 e0       	ldi	r24, 0x01	; 1
+ 6a4:	90 e0       	ldi	r25, 0x00	; 0
+ 6a6:	02 c0       	rjmp	.+4      	; 0x6ac <dio_vidWriteChannel+0x22>
+ 6a8:	88 0f       	add	r24, r24
+ 6aa:	99 1f       	adc	r25, r25
+ 6ac:	6a 95       	dec	r22
+ 6ae:	e2 f7       	brpl	.-8      	; 0x6a8 <dio_vidWriteChannel+0x1e>
+ 6b0:	80 95       	com	r24
+ 6b2:	82 23       	and	r24, r18
+ 6b4:	8b bb       	out	0x1b, r24	; 27
+ 6b6:	08 95       	ret
+ 6b8:	2b b3       	in	r18, 0x1b	; 27
+ 6ba:	81 e0       	ldi	r24, 0x01	; 1
+ 6bc:	90 e0       	ldi	r25, 0x00	; 0
+ 6be:	02 c0       	rjmp	.+4      	; 0x6c4 <dio_vidWriteChannel+0x3a>
+ 6c0:	88 0f       	add	r24, r24
+ 6c2:	99 1f       	adc	r25, r25
+ 6c4:	6a 95       	dec	r22
+ 6c6:	e2 f7       	brpl	.-8      	; 0x6c0 <dio_vidWriteChannel+0x36>
+ 6c8:	82 2b       	or	r24, r18
+ 6ca:	8b bb       	out	0x1b, r24	; 27
+ 6cc:	08 95       	ret
+ 6ce:	41 11       	cpse	r20, r1
+ 6d0:	0c c0       	rjmp	.+24     	; 0x6ea <dio_vidWriteChannel+0x60>
+ 6d2:	28 b3       	in	r18, 0x18	; 24
+ 6d4:	81 e0       	ldi	r24, 0x01	; 1
+ 6d6:	90 e0       	ldi	r25, 0x00	; 0
+ 6d8:	02 c0       	rjmp	.+4      	; 0x6de <dio_vidWriteChannel+0x54>
+ 6da:	88 0f       	add	r24, r24
+ 6dc:	99 1f       	adc	r25, r25
+ 6de:	6a 95       	dec	r22
+ 6e0:	e2 f7       	brpl	.-8      	; 0x6da <dio_vidWriteChannel+0x50>
+ 6e2:	80 95       	com	r24
+ 6e4:	82 23       	and	r24, r18
+ 6e6:	88 bb       	out	0x18, r24	; 24
+ 6e8:	08 95       	ret
+ 6ea:	28 b3       	in	r18, 0x18	; 24
+ 6ec:	81 e0       	ldi	r24, 0x01	; 1
+ 6ee:	90 e0       	ldi	r25, 0x00	; 0
+ 6f0:	02 c0       	rjmp	.+4      	; 0x6f6 <dio_vidWriteChannel+0x6c>
+ 6f2:	88 0f       	add	r24, r24
+ 6f4:	99 1f       	adc	r25, r25
+ 6f6:	6a 95       	dec	r22
+ 6f8:	e2 f7       	brpl	.-8      	; 0x6f2 <dio_vidWriteChannel+0x68>
+ 6fa:	82 2b       	or	r24, r18
+ 6fc:	88 bb       	out	0x18, r24	; 24
+ 6fe:	08 95       	ret
+ 700:	41 11       	cpse	r20, r1
+ 702:	0c c0       	rjmp	.+24     	; 0x71c <dio_vidWriteChannel+0x92>
+ 704:	25 b3       	in	r18, 0x15	; 21
+ 706:	81 e0       	ldi	r24, 0x01	; 1
+ 708:	90 e0       	ldi	r25, 0x00	; 0
+ 70a:	02 c0       	rjmp	.+4      	; 0x710 <dio_vidWriteChannel+0x86>
+ 70c:	88 0f       	add	r24, r24
+ 70e:	99 1f       	adc	r25, r25
+ 710:	6a 95       	dec	r22
+ 712:	e2 f7       	brpl	.-8      	; 0x70c <dio_vidWriteChannel+0x82>
+ 714:	80 95       	com	r24
+ 716:	82 23       	and	r24, r18
+ 718:	85 bb       	out	0x15, r24	; 21
+ 71a:	08 95       	ret
+ 71c:	25 b3       	in	r18, 0x15	; 21
+ 71e:	81 e0       	ldi	r24, 0x01	; 1
+ 720:	90 e0       	ldi	r25, 0x00	; 0
+ 722:	02 c0       	rjmp	.+4      	; 0x728 <dio_vidWriteChannel+0x9e>
+ 724:	88 0f       	add	r24, r24
+ 726:	99 1f       	adc	r25, r25
+ 728:	6a 95       	dec	r22
+ 72a:	e2 f7       	brpl	.-8      	; 0x724 <dio_vidWriteChannel+0x9a>
+ 72c:	82 2b       	or	r24, r18
+ 72e:	85 bb       	out	0x15, r24	; 21
+ 730:	08 95       	ret
+ 732:	41 11       	cpse	r20, r1
+ 734:	0c c0       	rjmp	.+24     	; 0x74e <dio_vidWriteChannel+0xc4>
+ 736:	22 b3       	in	r18, 0x12	; 18
+ 738:	81 e0       	ldi	r24, 0x01	; 1
+ 73a:	90 e0       	ldi	r25, 0x00	; 0
+ 73c:	02 c0       	rjmp	.+4      	; 0x742 <dio_vidWriteChannel+0xb8>
+ 73e:	88 0f       	add	r24, r24
+ 740:	99 1f       	adc	r25, r25
+ 742:	6a 95       	dec	r22
+ 744:	e2 f7       	brpl	.-8      	; 0x73e <dio_vidWriteChannel+0xb4>
+ 746:	80 95       	com	r24
+ 748:	82 23       	and	r24, r18
+ 74a:	82 bb       	out	0x12, r24	; 18
+ 74c:	08 95       	ret
+ 74e:	22 b3       	in	r18, 0x12	; 18
+ 750:	81 e0       	ldi	r24, 0x01	; 1
+ 752:	90 e0       	ldi	r25, 0x00	; 0
+ 754:	02 c0       	rjmp	.+4      	; 0x75a <dio_vidWriteChannel+0xd0>
+ 756:	88 0f       	add	r24, r24
+ 758:	99 1f       	adc	r25, r25
+ 75a:	6a 95       	dec	r22
+ 75c:	e2 f7       	brpl	.-8      	; 0x756 <dio_vidWriteChannel+0xcc>
+ 75e:	82 2b       	or	r24, r18
+ 760:	82 bb       	out	0x12, r24	; 18
+ 762:	08 95       	ret
+
+00000764 <dio_dioLevelReadChannel>:
+* \Return value:   : loc_pinRead   -> IO channel level                           
+*******************************************************************************/
+dio_level_t dio_dioLevelReadChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	dio_level_t loc_pinRead = STD_LOW;
+	switch (port)
+ 764:	81 30       	cpi	r24, 0x01	; 1
+ 766:	79 f0       	breq	.+30     	; 0x786 <dio_dioLevelReadChannel+0x22>
+ 768:	28 f0       	brcs	.+10     	; 0x774 <dio_dioLevelReadChannel+0x10>
+ 76a:	82 30       	cpi	r24, 0x02	; 2
+ 76c:	a9 f0       	breq	.+42     	; 0x798 <dio_dioLevelReadChannel+0x34>
+ 76e:	83 30       	cpi	r24, 0x03	; 3
+ 770:	e1 f0       	breq	.+56     	; 0x7aa <dio_dioLevelReadChannel+0x46>
+ 772:	24 c0       	rjmp	.+72     	; 0x7bc <dio_dioLevelReadChannel+0x58>
+	{
+	 case DIO_PORTA:
+		loc_pinRead = CHECK_BIT(DIO_PINA_REG, channel);
+ 774:	89 b3       	in	r24, 0x19	; 25
+ 776:	90 e0       	ldi	r25, 0x00	; 0
+ 778:	02 c0       	rjmp	.+4      	; 0x77e <dio_dioLevelReadChannel+0x1a>
+ 77a:	95 95       	asr	r25
+ 77c:	87 95       	ror	r24
+ 77e:	6a 95       	dec	r22
+ 780:	e2 f7       	brpl	.-8      	; 0x77a <dio_dioLevelReadChannel+0x16>
+ 782:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 784:	08 95       	ret
+
+	 case DIO_PORTB:
+		loc_pinRead = CHECK_BIT(DIO_PINB_REG, channel);
+ 786:	86 b3       	in	r24, 0x16	; 22
+ 788:	90 e0       	ldi	r25, 0x00	; 0
+ 78a:	02 c0       	rjmp	.+4      	; 0x790 <dio_dioLevelReadChannel+0x2c>
+ 78c:	95 95       	asr	r25
+ 78e:	87 95       	ror	r24
+ 790:	6a 95       	dec	r22
+ 792:	e2 f7       	brpl	.-8      	; 0x78c <dio_dioLevelReadChannel+0x28>
+ 794:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 796:	08 95       	ret
+
+	 case DIO_PORTC:
+		loc_pinRead = CHECK_BIT(DIO_PINC_REG, channel);
+ 798:	83 b3       	in	r24, 0x13	; 19
+ 79a:	90 e0       	ldi	r25, 0x00	; 0
+ 79c:	02 c0       	rjmp	.+4      	; 0x7a2 <dio_dioLevelReadChannel+0x3e>
+ 79e:	95 95       	asr	r25
+ 7a0:	87 95       	ror	r24
+ 7a2:	6a 95       	dec	r22
+ 7a4:	e2 f7       	brpl	.-8      	; 0x79e <dio_dioLevelReadChannel+0x3a>
+ 7a6:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 7a8:	08 95       	ret
+
+	 case DIO_PORTD:
+		loc_pinRead = CHECK_BIT(DIO_PIND_REG, channel);
+ 7aa:	80 b3       	in	r24, 0x10	; 16
+ 7ac:	90 e0       	ldi	r25, 0x00	; 0
+ 7ae:	02 c0       	rjmp	.+4      	; 0x7b4 <dio_dioLevelReadChannel+0x50>
+ 7b0:	95 95       	asr	r25
+ 7b2:	87 95       	ror	r24
+ 7b4:	6a 95       	dec	r22
+ 7b6:	e2 f7       	brpl	.-8      	; 0x7b0 <dio_dioLevelReadChannel+0x4c>
+ 7b8:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 7ba:	08 95       	ret
+					 channel  -> MC channel ID
+* \Return value:   : loc_pinRead   -> IO channel level                           
+*******************************************************************************/
+dio_level_t dio_dioLevelReadChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	dio_level_t loc_pinRead = STD_LOW;
+ 7bc:	80 e0       	ldi	r24, 0x00	; 0
+	 case DIO_PORTD:
+		loc_pinRead = CHECK_BIT(DIO_PIND_REG, channel);
+		break;
+    }
+	return loc_pinRead;
+}
+ 7be:	08 95       	ret
+
+000007c0 <__umulhisi3>:
+ 7c0:	a2 9f       	mul	r26, r18
+ 7c2:	b0 01       	movw	r22, r0
+ 7c4:	b3 9f       	mul	r27, r19
+ 7c6:	c0 01       	movw	r24, r0
+ 7c8:	a3 9f       	mul	r26, r19
+ 7ca:	70 0d       	add	r23, r0
+ 7cc:	81 1d       	adc	r24, r1
+ 7ce:	11 24       	eor	r1, r1
+ 7d0:	91 1d       	adc	r25, r1
+ 7d2:	b2 9f       	mul	r27, r18
+ 7d4:	70 0d       	add	r23, r0
+ 7d6:	81 1d       	adc	r24, r1
+ 7d8:	11 24       	eor	r1, r1
+ 7da:	91 1d       	adc	r25, r1
+ 7dc:	08 95       	ret
+
+000007de <_exit>:
+ 7de:	f8 94       	cli
+
+000007e0 <__stop_program>:
+ 7e0:	ff cf       	rjmp	.-2      	; 0x7e0 <__stop_program>
