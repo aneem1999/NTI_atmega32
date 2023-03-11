@@ -281,6 +281,15 @@
     <Compile Include="MCAL\SPI\spi_interface.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCAL\T1_PWM\pwm1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\T1_PWM\pwm1_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\T1_PWM\pwm1_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\TIMER0\timer0.c">
       <SubType>compile</SubType>
     </Compile>
@@ -320,6 +329,8 @@
     <Folder Include="MCAL\ADC" />
     <Folder Include="MCAL\DIO" />
     <Folder Include="MCAL\EXTI" />
+    <Folder Include="MCAL\T1_ICU" />
+    <Folder Include="MCAL\T1_PWM" />
     <Folder Include="MCAL\TWI" />
     <Folder Include="MCAL\SPI" />
     <Folder Include="MCAL\USART" />

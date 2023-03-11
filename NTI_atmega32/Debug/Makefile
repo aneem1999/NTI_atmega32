@@ -43,6 +43,8 @@ SUBDIRS :=  \
 ../MCAL/ADC \
 ../MCAL/DIO \
 ../MCAL/EXTI \
+../MCAL/T1_ICU \
+../MCAL/T1_PWM \
 ../MCAL/TWI \
 ../MCAL/SPI \
 ../MCAL/USART \
@@ -79,6 +81,7 @@ C_SRCS +=  \
 ../MCAL/DIO/dio_cfg.c \
 ../MCAL/EXTI/EXTI_prog.c \
 ../MCAL/SPI/spi.c \
+../MCAL/T1_PWM/pwm1.c \
 ../MCAL/TIMER0/timer0.c \
 ../MCAL/TWI/twi.c \
 ../MCAL/USART/uart.c \
@@ -117,6 +120,7 @@ MCAL/DIO/dio.o \
 MCAL/DIO/dio_cfg.o \
 MCAL/EXTI/EXTI_prog.o \
 MCAL/SPI/spi.o \
+MCAL/T1_PWM/pwm1.o \
 MCAL/TIMER0/timer0.o \
 MCAL/TWI/twi.o \
 MCAL/USART/uart.o \
@@ -148,6 +152,7 @@ MCAL/DIO/dio.o \
 MCAL/DIO/dio_cfg.o \
 MCAL/EXTI/EXTI_prog.o \
 MCAL/SPI/spi.o \
+MCAL/T1_PWM/pwm1.o \
 MCAL/TIMER0/timer0.o \
 MCAL/TWI/twi.o \
 MCAL/USART/uart.o \
@@ -179,6 +184,7 @@ MCAL/DIO/dio.d \
 MCAL/DIO/dio_cfg.d \
 MCAL/EXTI/EXTI_prog.d \
 MCAL/SPI/spi.d \
+MCAL/T1_PWM/pwm1.d \
 MCAL/TIMER0/timer0.d \
 MCAL/TWI/twi.d \
 MCAL/USART/uart.d \
@@ -210,6 +216,7 @@ MCAL/DIO/dio.d \
 MCAL/DIO/dio_cfg.d \
 MCAL/EXTI/EXTI_prog.d \
 MCAL/SPI/spi.d \
+MCAL/T1_PWM/pwm1.d \
 MCAL/TIMER0/timer0.d \
 MCAL/TWI/twi.d \
 MCAL/USART/uart.d \
@@ -398,6 +405,13 @@ MCAL/EXTI/EXTI_prog.o: ../MCAL/EXTI/EXTI_prog.c
 	
 
 MCAL/SPI/spi.o: ../MCAL/SPI/spi.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/T1_PWM/pwm1.o: ../MCAL/T1_PWM/pwm1.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

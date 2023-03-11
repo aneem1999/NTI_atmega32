@@ -17,7 +17,7 @@
 #include "util/delay.h"
 
 #if 1
-volatile u8 d =0x20 ;
+volatile u8 d ='A' ;
 
 void ISRspi()
 {
@@ -27,15 +27,24 @@ void ISRspi()
 int main()
 {
    
-	TWI_SetBitRate(100000);
+	TWI_Master_voidInit(100000);
+	led_viInit();
 		
 	
     while (1) 
     {
-		TWI_Start();
-		TWI_SlaveSelect(0x0f , WRITE_OP);
-		TWI_SendByte(d);
-		TWI_Stop();
+		if(TWI_Master_enuStartCond() ==EVENT_OK_STATE)
+		{
+			if(TWI_Master_enuSelectSlave(10,WRITE_OP) == SLA_W_SENT_WITH_ACK_STATE)
+			{
+				if (TWI_Master_enuSendByte(d)== DATA_SENT_WITH_ACK_STATE)
+				{
+					TWI_Master_voidStopCond();
+				
+				}
+			}
+			
+		}
 		
 		d++;
 		
@@ -47,21 +56,3 @@ int main()
 
 #endif
 
-#if 0
-
-int ISRs()
-{
-	SPDR = d;
-}
-int main(void)
-{
-	
-			
-	while (1)
-	{
-		
-		
-	}
-}
-
-#endif

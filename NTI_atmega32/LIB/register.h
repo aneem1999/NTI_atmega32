@@ -60,25 +60,33 @@
 #define TCCR0 (*(volatile unsigned char *)0x53)
 #define OCR0 (*(volatile unsigned char *)0x5C)
 
-/* Timer 1 */
+/* Timer 2 */
 #define TCNT2 (*(volatile unsigned char *)0x44)
 #define TCCR2 (*(volatile unsigned char *)0x45)
 #define OCR2 (*(volatile unsigned char *)0x43)
 
-/* Timer 2 */
+/* Timer 1 */
 #define TCNT1H (*(volatile unsigned char *)0x4D)
 #define TCNT1L (*(volatile unsigned char *)0x4C)
+#define TCNT1 (*(volatile unsigned short *)0x4C)
+
 
 #define TCCR1A (*(volatile unsigned char *)0x4F)
 #define TCCR1B (*(volatile unsigned char *)0x4E)
 
 #define OCR1AH (*(volatile unsigned char *)0x4B)
 #define OCR1AL (*(volatile unsigned char *)0x4A)
+#define OCR1A (*(volatile unsigned short *)0x4A)
+
 #define OCR1BH (*(volatile unsigned char *)0x49)
 #define OCR1BL (*(volatile unsigned char *)0x48)
+#define OCR1B (*(volatile unsigned short *)0x48)
+
 
 #define ICR1H (*(volatile unsigned char *)0x47)
 #define ICR1L (*(volatile unsigned char *)0x46)
+#define ICR1 (*(volatile unsigned char *)0x46)
+
 
 /************************** SPI ***********************************************/
 #define SPDR (*(volatile unsigned char *)0x2F)

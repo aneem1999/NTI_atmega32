@@ -52,6 +52,8 @@ MCAL\EXTI\EXTI_prog.c
 
 MCAL\SPI\spi.c
 
+MCAL\T1_PWM\pwm1.c
+
 MCAL\TIMER0\timer0.c
 
 MCAL\TWI\twi.c

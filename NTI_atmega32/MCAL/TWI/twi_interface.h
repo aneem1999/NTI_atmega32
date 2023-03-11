@@ -95,43 +95,42 @@ typedef enum
 
 /*************************************************************
  *
- *	 @fun		- TWI_SetBitRate
+ *	 @fun		- TWI_Master_voidInit
  *	 @param [in]- BitRate  bit rate with max value 400,000 (400 KHZ)
  *   @brief     - initialize TWI set prescaler and bit rate
  *   @retval    - None
  */
-void TWI_SetBitRate(u32 BitRate);
+void TWI_Master_voidInit(u32 BitRate);
 
 /*************************************************************
- *	 @fun		- TWI_Start
+ *	 @fun		- TWI_Master_enuStartCond
  *   @brief     - send start condition
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_Start(void);
-
+TWI_ERROR_t TWI_Master_enuStartCond(void);
 /*************************************************************
- *	 @fun		- TWI_RepeatedStart
+ *	 @fun		- TWI_Mater_enuRepeatedStartCond
  *   @brief     - send repeated start condition
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_RepeatedStart(void);
+TWI_ERROR_t TWI_Mater_enuRepeatedStartCond(void);
 
 /*************************************************************
- *	 @fun		- TWI_SlaveSelect
+ *	 @fun		- TWI_Master_enuSelectSlave
  *	 @param [in]- SLA   -> 7 bit slave Slave address
  *	 @param [in]- RW    -> read or write operation (TWI_RW_OP_t)
  *   @brief     - send selected slave address
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_SlaveSelect(u8 SLA, TWI_RW_OP_t RW);
+TWI_ERROR_t TWI_Master_enuSelectSlave(u8 SLA, TWI_RW_OP_t RW);
 
 /*************************************************************
- *	 @fun		- TWI_SendByte
+ *	 @fun		- TWI_Master_enuSendByte
  *	 @param [in]- CopyofData  8 bit data
  *   @brief     - send data
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_SendByte(u8 CopyofData);
+TWI_ERROR_t TWI_Master_enuSendByte(u8 CopyofData);
 
 /*************************************************************
  *	 @fun		- TWI_ReceiveByte
@@ -147,7 +146,7 @@ TWI_ERROR_t TWI_ReceiveByte(u8 *CopyofData, TWI_ACK_t ack);
  *   @brief     - send stop condition
  *   @retval    - None
  */
-void TWI_Stop(void);
+void TWI_Master_voidStopCond(void);
 
 /*************************************************************
  *	 @fun		- TWI_SetSlaveAddress
