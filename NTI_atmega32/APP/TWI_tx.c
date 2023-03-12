@@ -19,12 +19,12 @@
 #include "../MCAL/SPI/spi_interface.h"
 #include "../MCAL/DIO/dio.h"
 #include "../HAL/KEYPAD//keyPad.h"
-#include "./MCAL/TWI/twi_interface.h"
+//#include "./MCAL/TWI/twi_interface.h"
 
 #define F_CPU 16000000U
 #include "util/delay.h"
 
-#if 1
+#if 0
 volatile u8 d ='A' ;
 
 void ISRspi()

@@ -8,7 +8,7 @@
 #include "twi_interface.h"
 
 /* Disable TWI peripheral */
-void TWI_Deinit()
+void TWI_voidDeinit()
 {
 	CLEAR_BIT(TWCR ,2);
 }
@@ -17,8 +17,8 @@ void TWI_Deinit()
 /*************************************************************
  *
  *	 @fun		- TWI_SetBitRate
- *	 @param [in]- BitRate  bit rate with max value 400,000 (400 KHZ)
- *   @brief     - initialize TWI set prescaler and bit rate
+ *	 @param [in]- BitRate bit rate with max value 400,000 (400 KHZ)
+ *   @brief     - Enable TWI and set prescaler and bit rate of clock
  *   @retval    - None
  */
 void TWI_Master_voidInit(u32 BitRate)
@@ -30,19 +30,16 @@ void TWI_Master_voidInit(u32 BitRate)
 	SET_BIT(TWCR,6);
 	
 	/* Enable TWI */
-	
 	SET_BIT(TWCR,2);
-	
-		
 }
 
 /*************************************************************
- *	 @fun		- TWI_Start
+ *	 @fun		- TWI_enuStartCond
  *   @brief     - send start condition 
  *   @retval    - TWI_ERROR_t  ---> EVENT_OK_STATE      SUCCESS State
  *							   ---> EVENT_ERROR_STATE   FAILD State
  */
-TWI_ERROR_t TWI_Master_enuStartCond(void)
+TWI_ERROR_t TWI_enuStartCond(void)
 {
 	TWI_ERROR_t EVENT_State;
 	/* Clear TWINT (set TWCR bit 7 TWSTA) 
@@ -68,12 +65,12 @@ TWI_ERROR_t TWI_Master_enuStartCond(void)
 }
 
 /*************************************************************
- *	 @fun		- TWI_Mater_enuRepeatedStartCond
+ *	 @fun		- TWI_enuRepeatedStartCond
  *   @brief     - send repeated start condition 
  *   @retval    - SWI_ERROR_t  ---> EVENT_OK_STATE      SUCCESS State
  *							   ---> EVENT_ERROR_STATE   FAILD State
  */
-TWI_ERROR_t TWI_Mater_enuRepeatedStartCond(void)
+TWI_ERROR_t TWI_enuRepeatedStartCond(void)
 {
 	TWI_ERROR_t EVENT_State;
 	/* Clear TWINT (set TWCR bit 7 TWSTA) */
@@ -96,16 +93,16 @@ TWI_ERROR_t TWI_Mater_enuRepeatedStartCond(void)
 }
 
 /*************************************************************
- *	 @fun		- TWI_SlaveSelect
+ *	 @fun		- TWI_enuSelectSlave
  *	 @param [in]- SLA   -> 7 bit slave Slave address
  *	 @param [in]- RW    -> read or write operation (TWI_RW_OP_t)
  *   @brief     - send selected slave address
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_Master_enuSelectSlave(u8 SLA, TWI_RW_OP_t RW)
+TWI_ERROR_t TWI_enuSelectSlave(u8 SLA, TWI_RW_OP_t RW)
 {
 	
-	TWDR = (SLA << 1) | (RW<<7) ;
+	TWDR = SLA  | RW ;
 	CLEAR_BIT(TWCR,5);
 	TWCR |= (1 << 7);
 	/* Busy wait until TWINT is set */
@@ -117,12 +114,12 @@ TWI_ERROR_t TWI_Master_enuSelectSlave(u8 SLA, TWI_RW_OP_t RW)
 }
 
 /*************************************************************
- *	 @fun		- TWI_SendData
+ *	 @fun		- TWI_enuSendByte
  *	 @param [in]- CopyofData  8 bit data
  *   @brief     - send data
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_Master_enuSendByte(u8 CopyofData)
+TWI_ERROR_t TWI_enuSendByte(u8 CopyofData)
 {
 	
 	TWDR = CopyofData;
@@ -137,29 +134,23 @@ TWI_ERROR_t TWI_Master_enuSendByte(u8 CopyofData)
 }
 
 /*************************************************************
- *	 @fun		- TWI_Master_enuReceiveByte
+ *	 @fun		- TWI_enuReceiveByte
  *	 @param [In]  ack  (ACK/NACK)
  *	 @param [Out] CopyofData  -> 8 bit data
  *   @brief     - Receive data then send ACK or NACK
  *   @retval    - Status of send SLA + RW according to twi status register
  */
-TWI_ERROR_t TWI_Master_enuReceiveByte(u8 *CopyofData, TWI_ACK_t ack)
+TWI_ERROR_t TWI_enuReceiveByte(u8 *CopyofData, TWI_ACK_t ack)
 {
-	TWI_ERROR_t TWI_ERROR = EVENT_ERROR_STATE;
 	
-	/* SEND ACK OR NACK condition */
+	/* turn off flag  & Enable/Disable ACK/NACK condition */
 	CLEAR_BIT(TWCR,6);
 	TWCR |= (1 << 7)|(ack << 6);
 	/* Busy wait until TWINT is set */
 	while (!CHECK_BIT(TWCR, 7));
-	
-	if(READ_TWI_EVENT_STATE() == DATA_RECIVED_WITH_ACK_STATE )
-	{
 	    *CopyofData = TWDR;
-		TWI_ERROR = EVENT_OK_STATE;
-	}
-	
-	return TWI_ERROR;
+	    
+	return READ_TWI_EVENT_STATE();
 	
 	
 }
@@ -169,24 +160,19 @@ TWI_ERROR_t TWI_Master_enuReceiveByte(u8 *CopyofData, TWI_ACK_t ack)
  *   @brief     - send stop condition
  *   @retval    - None
  */
-void TWI_Master_voidStopCond(void)
+void TWI_voidStopCond(void)
 {
 	TWCR |= (1 << 7) | (1<<4);
 }
 
 /*************************************************************
  *	 @fun		- TWI_Salve_voidInit
- *	 @param [in]- CopyofSLA  7 bit address (bit 0 is neglected)
+ *	 @param [in]- init salve CopyofSLA  7 bit address (bit 0 is neglected)
  *   @brief     - send data
  *   @retval    - None
  */
 void TWI_Salve_voidInit(u8 CopyofSLA)
 {
-	TWSR = TWI_PS & 0x03;
-	
-	TWBR = TWI_BITRATE(BitRate);
-	
-	SET_BIT(TWCR,6);
 	
 	/* Enable TWI */
 	TWCR=(1<<2)|(1<<6);
@@ -199,10 +185,4 @@ void TWI_Salve_voidLisent(u8 CopyofSLA)
 {
 	/* Busy wait until TWINT is set */
 	while (!CHECK_BIT(TWCR, 7));
-	
-}
-
-TWI_ERROR_t TWI_Slave_enuReceive()
-{
-	SET_BIT
 }

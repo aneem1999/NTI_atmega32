@@ -10,15 +10,21 @@ APP\Ch1_PasswordbyTicks.c
 
 APP\Ch2_sStopWatch.c
 
+APP\exEEPROMmain.c
+
 APP\FastPWMwithbuzzer.c
 
 APP\SPImasterReceiver.c
 
 APP\Timer_NormalMode.c
 
+APP\TWI_tx.c
+
 HAL\Button\button.c
 
 HAL\Button\button_cfg.c
+
+HAL\External_EEPROM\exEEPROM.c
 
 HAL\KEYPAD\keypad.c
 

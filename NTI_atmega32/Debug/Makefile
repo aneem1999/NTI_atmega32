@@ -37,6 +37,7 @@ SUBDIRS :=  \
 ../HAL/KEYPAD \
 ../HAL/LCD \
 ../HAL/LED \
+../HAL/External_EEPROM \
 ../HAL/UnipolarStepperMotor \
 ../HAL/SSD \
 ../MCAL \
@@ -60,11 +61,14 @@ C_SRCS +=  \
 ../APP/ADC_main_readFreerunning.c \
 ../APP/Ch1_PasswordbyTicks.c \
 ../APP/Ch2_sStopWatch.c \
+../APP/exEEPROMmain.c \
 ../APP/FastPWMwithbuzzer.c \
 ../APP/SPImasterReceiver.c \
 ../APP/Timer_NormalMode.c \
+../APP/TWI_tx.c \
 ../HAL/Button/button.c \
 ../HAL/Button/button_cfg.c \
+../HAL/External_EEPROM/exEEPROM.c \
 ../HAL/KEYPAD/keypad.c \
 ../HAL/KEYPAD/keypad_cfg.c \
 ../HAL/LCD/LCD.c \
@@ -99,11 +103,14 @@ APP/ADC_main_autotrigger.o \
 APP/ADC_main_readFreerunning.o \
 APP/Ch1_PasswordbyTicks.o \
 APP/Ch2_sStopWatch.o \
+APP/exEEPROMmain.o \
 APP/FastPWMwithbuzzer.o \
 APP/SPImasterReceiver.o \
 APP/Timer_NormalMode.o \
+APP/TWI_tx.o \
 HAL/Button/button.o \
 HAL/Button/button_cfg.o \
+HAL/External_EEPROM/exEEPROM.o \
 HAL/KEYPAD/keypad.o \
 HAL/KEYPAD/keypad_cfg.o \
 HAL/LCD/LCD.o \
@@ -131,11 +138,14 @@ APP/ADC_main_autotrigger.o \
 APP/ADC_main_readFreerunning.o \
 APP/Ch1_PasswordbyTicks.o \
 APP/Ch2_sStopWatch.o \
+APP/exEEPROMmain.o \
 APP/FastPWMwithbuzzer.o \
 APP/SPImasterReceiver.o \
 APP/Timer_NormalMode.o \
+APP/TWI_tx.o \
 HAL/Button/button.o \
 HAL/Button/button_cfg.o \
+HAL/External_EEPROM/exEEPROM.o \
 HAL/KEYPAD/keypad.o \
 HAL/KEYPAD/keypad_cfg.o \
 HAL/LCD/LCD.o \
@@ -163,11 +173,14 @@ APP/ADC_main_autotrigger.d \
 APP/ADC_main_readFreerunning.d \
 APP/Ch1_PasswordbyTicks.d \
 APP/Ch2_sStopWatch.d \
+APP/exEEPROMmain.d \
 APP/FastPWMwithbuzzer.d \
 APP/SPImasterReceiver.d \
 APP/Timer_NormalMode.d \
+APP/TWI_tx.d \
 HAL/Button/button.d \
 HAL/Button/button_cfg.d \
+HAL/External_EEPROM/exEEPROM.d \
 HAL/KEYPAD/keypad.d \
 HAL/KEYPAD/keypad_cfg.d \
 HAL/LCD/LCD.d \
@@ -195,11 +208,14 @@ APP/ADC_main_autotrigger.d \
 APP/ADC_main_readFreerunning.d \
 APP/Ch1_PasswordbyTicks.d \
 APP/Ch2_sStopWatch.d \
+APP/exEEPROMmain.d \
 APP/FastPWMwithbuzzer.d \
 APP/SPImasterReceiver.d \
 APP/Timer_NormalMode.d \
+APP/TWI_tx.d \
 HAL/Button/button.d \
 HAL/Button/button_cfg.d \
+HAL/External_EEPROM/exEEPROM.d \
 HAL/KEYPAD/keypad.d \
 HAL/KEYPAD/keypad_cfg.d \
 HAL/LCD/LCD.d \
@@ -264,6 +280,13 @@ APP/Ch2_sStopWatch.o: ../APP/Ch2_sStopWatch.c
 	@echo Finished building: $<
 	
 
+APP/exEEPROMmain.o: ../APP/exEEPROMmain.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 APP/FastPWMwithbuzzer.o: ../APP/FastPWMwithbuzzer.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -285,6 +308,13 @@ APP/Timer_NormalMode.o: ../APP/Timer_NormalMode.c
 	@echo Finished building: $<
 	
 
+APP/TWI_tx.o: ../APP/TWI_tx.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 HAL/Button/button.o: ../HAL/Button/button.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -293,6 +323,13 @@ HAL/Button/button.o: ../HAL/Button/button.c
 	
 
 HAL/Button/button_cfg.o: ../HAL/Button/button_cfg.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/External_EEPROM/exEEPROM.o: ../HAL/External_EEPROM/exEEPROM.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
