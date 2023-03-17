@@ -137,31 +137,40 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="APP\ADC_main_autotrigger.c">
+    <Compile Include="APP\Demo_projects\ADC_main_autotrigger.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\ADC_main_readFreerunning.c">
+    <Compile Include="APP\Demo_projects\ADC_main_readFreerunning.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\Ch1_PasswordbyTicks.c">
+    <Compile Include="APP\Demo_projects\Ch1_PasswordbyTicks.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\Ch2_sStopWatch.c">
+    <Compile Include="APP\Demo_projects\Ch2_sStopWatch.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\exEEPROMmain.c">
+    <Compile Include="APP\Demo_projects\DHTmain.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\FastPWMwithbuzzer.c">
+    <Compile Include="APP\Demo_projects\exEEPROMmain.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\SPImasterReceiver.c">
+    <Compile Include="APP\Demo_projects\FastPWMwithbuzzer.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\Timer_NormalMode.c">
+    <Compile Include="APP\Demo_projects\SPImasterReceiver.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\TWI_tx.c">
+    <Compile Include="APP\Demo_projects\Timer_NormalMode.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Demo_projects\TWI_tx.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterence_Control.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Home_Control.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\Button\button.c">
@@ -176,10 +185,25 @@
     <Compile Include="HAL\Button\button_cfg.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\DHT11\dht.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\DHT11\dht.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\DHT11\dht_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\External_EEPROM\exEEPROM.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\External_EEPROM\exEEPROM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\FP_R503\FP.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\FP_R503\FP.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\KEYPAD\keypad.c">
@@ -215,6 +239,12 @@
     <Compile Include="HAL\LED\led_cfg.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\SERVO_MOTOR\servo.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\SERVO_MOTOR\servo.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\SSD\sevens_seg.c">
       <SubType>compile</SubType>
     </Compile>
@@ -225,6 +255,18 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\SSD\seven_seg_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Ultrasonic_HC_SR04\US_Hc_SR04.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Ultrasonic_HC_SR04\US_HC_SR04.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Ultrasonic_HC_SR04\US_HC_SR04_cfg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Ultrasonic_HC_SR04\US_HC_SR04_cfg.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\UnipolarStepperMotor\UnipolarStepperMotor.c">
@@ -293,15 +335,6 @@
     <Compile Include="MCAL\SPI\spi_interface.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MCAL\T1_PWM\pwm1.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\T1_PWM\pwm1_cfg.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\T1_PWM\pwm1_interface.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="MCAL\TIMER0\timer0.c">
       <SubType>compile</SubType>
     </Compile>
@@ -309,6 +342,24 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\TIMER0\timer0_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER1\timer1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER1\timer1_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER1\timer1_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER2\timer2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER2\timer2_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\TIMER2\timer2_interface.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\TWI\twi.c">
@@ -329,21 +380,50 @@
     <Compile Include="MCAL\USART\uart_interface.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="SERVICES\Delay\TD_delay.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\Delay\TD_delay.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\PWM1\pwm1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\PWM1\pwm1_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\PWM1\pwm1_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\SW_ICU\SW_ICU.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\SW_ICU\SW_ICU.c">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="APP\Demo_projects" />
+    <Folder Include="APP\Smart_Home" />
+    <Folder Include="APP\Smart_Home\Enterene" />
+    <Folder Include="APP\Smart_Home\Home_Control" />
     <Folder Include="HAL\Button" />
     <Folder Include="HAL\KEYPAD" />
     <Folder Include="HAL\LCD" />
     <Folder Include="HAL\LED" />
     <Folder Include="HAL\External_EEPROM" />
+    <Folder Include="HAL\FP_R503" />
+    <Folder Include="HAL\DHT11" />
+    <Folder Include="HAL\Ultrasonic_HC_SR04" />
+    <Folder Include="HAL\SERVO_MOTOR" />
     <Folder Include="HAL\UnipolarStepperMotor" />
     <Folder Include="HAL\SSD" />
     <Folder Include="MCAL" />
     <Folder Include="MCAL\ADC" />
     <Folder Include="MCAL\DIO" />
     <Folder Include="MCAL\EXTI" />
-    <Folder Include="MCAL\T1_ICU" />
-    <Folder Include="MCAL\T1_PWM" />
+    <Folder Include="MCAL\TIMER2" />
+    <Folder Include="MCAL\TIMER1" />
     <Folder Include="MCAL\TWI" />
     <Folder Include="MCAL\SPI" />
     <Folder Include="MCAL\USART" />
@@ -351,6 +431,10 @@
     <Folder Include="HAL" />
     <Folder Include="LIB" />
     <Folder Include="APP" />
+    <Folder Include="SERVICES" />
+    <Folder Include="SERVICES\Delay" />
+    <Folder Include="SERVICES\SW_ICU" />
+    <Folder Include="SERVICES\PWM1" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

@@ -20,7 +20,7 @@
         TIM0_MOD_CTC
         TIM0_MOD_PWM_FAST
 */
-#define TIM0_MOD TIM0_MOD_PWM_PHASE_CORRECT
+#define TIM0_MOD TIM0_MOD_NORMAL
 
 /*  Select Timer 0 Pre-scaler from @ref TIM0_CS
         TIM0_CS_STOPPED
@@ -32,7 +32,7 @@
         TIM0_CS_EXTERNAL_F_EDGE
         TIM0_CS_EXTERNAL_R_EDGE
  */
-#define TIM0_CLOCK_SELECT TIM0_CS_PRESCALER_256
+#define TIM0_CLOCK_SELECT TIM0_CS_PRESCALER_8
 
 /* Detect prescaler value*/
 #if TIM0_CLOCK_SELECT == TIM0_CS_EXTERNAL_F_EDGE

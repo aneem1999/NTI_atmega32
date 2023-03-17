@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "std_types.h": "c",
+        "us_hc_sr04_cfg.h": "c",
+        "timer2_interface.h": "c",
+        "dio.h": "c",
+        "us_hc_sr04.h": "c",
+        "td_delay.h": "c",
+        "servo.h": "c"
+    }
+}

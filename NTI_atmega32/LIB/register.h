@@ -70,7 +70,6 @@
 #define TCNT1L (*(volatile unsigned char *)0x4C)
 #define TCNT1 (*(volatile unsigned short *)0x4C)
 
-
 #define TCCR1A (*(volatile unsigned char *)0x4F)
 #define TCCR1B (*(volatile unsigned char *)0x4E)
 
@@ -82,11 +81,9 @@
 #define OCR1BL (*(volatile unsigned char *)0x48)
 #define OCR1B (*(volatile unsigned short *)0x48)
 
-
 #define ICR1H (*(volatile unsigned char *)0x47)
 #define ICR1L (*(volatile unsigned char *)0x46)
-#define ICR1 (*(volatile unsigned char *)0x46)
-
+#define ICR1 (*(volatile unsigned short *)0x46)
 
 /************************** SPI ***********************************************/
 #define SPDR (*(volatile unsigned char *)0x2F)

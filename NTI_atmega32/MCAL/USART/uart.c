@@ -8,12 +8,10 @@
 /*************************************************************
  *    Includes
  *************************************************************/
-#include "uart_interface.h"
 #include "uart_cfg.h"
+#include "uart_interface.h"
+
 #include "../HAL/LCD/LCD.h"
-
-
-
 
 /* Interrupts callback functions*/
 void (*UART_RXC_CallBack)();
@@ -23,34 +21,29 @@ void (*UART_TXC_CallBack)();
 UART_ERROR_t UART_Init()
 {
     UART_ERROR_t UART_state = UART_CONFIG_OK;
+    u8 UCSRC_temp = 0;
+    /* Set baud rate */
+    UBRRH = (unsigned char)(UBRR_VAL(UART_Configuration.BR) >> 8);
+    UBRRL = (unsigned char)UBRR_VAL(UART_Configuration.BR);
+#if 0
+    
+    /* Enable receiver and transmitter */
+    UCSRB = (1 << 4) | (1 << 3);
+    /* Set frame format: 8data, 2stop bit */
+    UCSRC = (1 << 7) | (3 << 1);
+#endif
+#if 1
 
-    /* Data Length*/
-    /* The UCSZ1:0 bits combined with the UCSZ2 bit in UCSRB sets the number of data bits*/
-	
-	/* Baud Rate */
-    UBRRL = (u8)UBRR_VAL(FOSC, UART_Configuration.BR);
-    UBRRH = (u8)(UBRR_VAL(FOSC, UART_Configuration.BR) >> 8);
-	
-	
-	// Enable receiver and transmitter 
-	UCSRB = (1<<4)|(1<<3);
-	UCSRC = (1<<7)|(1<<3)|(3<<1);
-	
-	
-	/*
-	// UCSRC access
-    SET_BIT(UCSRC, 7);
+    // UCSRC access
+    SET_BIT(UCSRC_temp, 7);
     switch (UART_Configuration.DataLength)
     {
     case 5:
-        CLEAR_BIT(UCSRC, 1);
-        CLEAR_BIT(UCSRC, 2);
         CLEAR_BIT(UCSRB, 2);
 
         break;
     case 6:
-        SET_BIT(UCSRC, 1);
-        CLEAR_BIT(UCSRC, 2);
+        SET_BIT(UCSRC_temp, 1);
         CLEAR_BIT(UCSRB, 2);
         break;
     case 7:
@@ -59,32 +52,30 @@ UART_ERROR_t UART_Init()
         CLEAR_BIT(UCSRB, 2);
         break;
     case 8:
-        SET_BIT(UCSRC, 1);
-        SET_BIT(UCSRC, 2);
-        CLEAR_BIT(UCSRB, 2);
+        UCSRC_temp = (1 << 7) | (3 << 1);
         break;
     case 9:
-        SET_BIT(UCSRC, 1);
-        SET_BIT(UCSRC, 2);
+        SET_BIT(UCSRC_temp, 1);
+        SET_BIT(UCSRC_temp, 2);
         SET_BIT(UCSRB, 2);
         break;
     default:
         UART_state = UART_CONFIG_ERROR;
     }
-    // Parity 
-   switch (UART_Configuration.Parity)
+    // Parity
+    switch (UART_Configuration.Parity)
     {
     case UART_PARTY_DISABLE:
-        CLEAR_BIT(UCSRC, 4);
-        CLEAR_BIT(UCSRC, 5);
+        CLEAR_BIT(UCSRC_temp, 4);
+        CLEAR_BIT(UCSRC_temp, 5);
         break;
     case UART_PARTY_EVEN:
-        CLEAR_BIT(UCSRC, 4);
-        SET_BIT(UCSRC, 5);
+        CLEAR_BIT(UCSRC_temp, 4);
+        SET_BIT(UCSRC_temp, 5);
         break;
     case UART_PARTY_ODD:
-        SET_BIT(UCSRB, 4);
-        SET_BIT(UCSRB, 5);
+        SET_BIT(UCSRC_temp, 4);
+        SET_BIT(UCSRC_temp, 5);
         break;
     default:
         UART_state = UART_CONFIG_ERROR;
@@ -94,19 +85,17 @@ UART_ERROR_t UART_Init()
     switch (UART_Configuration.Stopbts)
     {
     case 1:
-        CLEAR_BIT(UCSRC, 3);
+        CLEAR_BIT(UCSRC_temp, 3);
         break;
     case 2:
-        SET_BIT(UCSRC, 3);
+        SET_BIT(UCSRC_temp, 3);
         break;
     default:
         UART_state = UART_CONFIG_ERROR;
     }
 
-    
-
-    //enable module
-    //specify mode TX , RX , TX and RX
+    // enable module
+    // specify mode TX , RX , TX and RX
     switch (UART_Configuration.Mode)
     {
     case UART_MODE_RX:
@@ -122,11 +111,13 @@ UART_ERROR_t UART_Init()
     default:
         UART_state = UART_CONFIG_ERROR;
     }
-*/
+
+    UCSRC = UCSRC_temp;
+#endif
     return UART_state;
 }
 
-UART_ERROR_t UART_TransmitBusyWait(u16 data)
+UART_ERROR_t UART_TransmitBusyWait(u8 data)
 {
     UART_ERROR_t UART_state = UART_TRANSMIT_OK;
 
@@ -140,7 +131,36 @@ UART_ERROR_t UART_TransmitBusyWait(u16 data)
     return UART_state;
 }
 
-UART_ERROR_t UART_ReceiveBusyWait(u16 *data)
+/***************************************************************/
+u8 RX_No_Block_Buffer ='z';
+UART_ERROR_t RX_No_Block_State;
+
+void CB_RX()
+{
+    if (CHECK_BIT(UCSRA, 2) || CHECK_BIT(UCSRA, 3) || CHECK_BIT(UCSRA, 4))
+    {
+        /* Error frame , Parity Error , Overrun Error*/
+        RX_No_Block_State = UART_RECIEVE_ERROR;
+    }
+    else
+    {
+    RX_No_Block_Buffer = UDR;
+    
+        RX_No_Block_State = UART_RECIEVE_OK;
+    }
+}
+UART_ERROR_t UART_Receive_No_Block(u8 *data)
+{
+
+    UART_RXC_IEN(CB_RX);
+
+    *data = RX_No_Block_Buffer;
+
+    return RX_No_Block_State;
+}
+
+/***************************************************/
+UART_ERROR_t UART_ReceiveBusyWait(u8 *data)
 {
 
     UART_ERROR_t UART_state = UART_RECIEVE_ERROR;
@@ -155,9 +175,10 @@ UART_ERROR_t UART_ReceiveBusyWait(u16 *data)
     }
     else
     {
-        *data = (UDR | CHECK_BIT(UCSRB, 1) << 8);
         UART_state = UART_RECIEVE_OK;
     }
+
+    *data = UDR;
 
     return UART_state;
 }
@@ -167,42 +188,40 @@ u8 TX_Buffer[200];
 
 void ISR_TXC()
 {
-	
+
     static u8 index = 1;
-	
-	if(TX_Buffer[index] != '\0')
-	{
-		UDR = TX_Buffer[index];
+
+    if (TX_Buffer[index] != '\0')
+    {
+        UDR = TX_Buffer[index];
         index++;
-	}
-    else 
+    }
+    else
     {
         index = 1;
         // stop interrupt
         CLEAR_BIT(UCSRB, 6);
     }
-   
 }
 void UART_TransmitString_NoBlock(u8 *str)
 {
-	
-	u8 index=0;
-	
-	while(str[index] != '\0')
-	{
-		TX_Buffer[index]= str[index];
-		index++;
-	}
-	TX_Buffer[index]='\0';
-	
+
+    u8 index = 0;
+
+    while (str[index] != '\0')
+    {
+        TX_Buffer[index] = str[index];
+        index++;
+    }
+    TX_Buffer[index] = '\0';
+
     UART_TXC_IEN(ISR_TXC);
-	UART_TransmitBusyWait(TX_Buffer[0]);
-    
+    UART_TransmitBusyWait(TX_Buffer[0]);
 }
 
 /************************************************************************************/
 /************************************************************************************/
-u8* RX_Buffer;
+u8 *RX_Buffer;
 static void ISR_RXC()
 {
     static u8 index = 0;
@@ -220,7 +239,7 @@ static void ISR_RXC()
 }
 void UART_ReceiveString_NoBlock(u8 *str)
 {
-	RX_Buffer =str ;
+    RX_Buffer = str;
     UART_RXC_IEN(ISR_RXC);
 }
 

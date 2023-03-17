@@ -48,7 +48,7 @@ void exEEPROM_voidReadByte(u8 copyofWordAddrs,u8* copyofByte)
 			{
 				// send data byte
 				TWI_enuReceiveByte(copyofByte, ACK);
-				LCD_WriteString("I write : ",0,0);
+				LCD_WriteString("I write : ");
 				LCD_WriteData(*copyofByte);
 			}
 			

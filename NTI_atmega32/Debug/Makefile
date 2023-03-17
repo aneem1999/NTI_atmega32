@@ -33,49 +33,69 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../APP/Demo_projects \
+../APP/Smart_Home \
+../APP/Smart_Home/Enterene \
+../APP/Smart_Home/Home_Control \
 ../HAL/Button \
 ../HAL/KEYPAD \
 ../HAL/LCD \
 ../HAL/LED \
 ../HAL/External_EEPROM \
+../HAL/FP_R503 \
+../HAL/DHT11 \
+../HAL/Ultrasonic_HC_SR04 \
+../HAL/SERVO_MOTOR \
 ../HAL/UnipolarStepperMotor \
 ../HAL/SSD \
 ../MCAL \
 ../MCAL/ADC \
 ../MCAL/DIO \
 ../MCAL/EXTI \
-../MCAL/T1_ICU \
-../MCAL/T1_PWM \
+../MCAL/TIMER2 \
+../MCAL/TIMER1 \
 ../MCAL/TWI \
 ../MCAL/SPI \
 ../MCAL/USART \
 ../MCAL/TIMER0 \
 ../HAL \
 ../LIB \
-../APP
+../APP \
+../SERVICES \
+../SERVICES/Delay \
+../SERVICES/SW_ICU \
+../SERVICES/PWM1
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../APP/ADC_main_autotrigger.c \
-../APP/ADC_main_readFreerunning.c \
-../APP/Ch1_PasswordbyTicks.c \
-../APP/Ch2_sStopWatch.c \
-../APP/exEEPROMmain.c \
-../APP/FastPWMwithbuzzer.c \
-../APP/SPImasterReceiver.c \
-../APP/Timer_NormalMode.c \
-../APP/TWI_tx.c \
+../APP/Demo_projects/ADC_main_autotrigger.c \
+../APP/Demo_projects/ADC_main_readFreerunning.c \
+../APP/Demo_projects/Ch1_PasswordbyTicks.c \
+../APP/Demo_projects/Ch2_sStopWatch.c \
+../APP/Demo_projects/DHTmain.c \
+../APP/Demo_projects/exEEPROMmain.c \
+../APP/Demo_projects/FastPWMwithbuzzer.c \
+../APP/Demo_projects/SPImasterReceiver.c \
+../APP/Demo_projects/Timer_NormalMode.c \
+../APP/Demo_projects/TWI_tx.c \
+../APP/Smart_Home/Enterence_Control.c \
+../APP/Smart_Home/Home_Control.c \
 ../HAL/Button/button.c \
 ../HAL/Button/button_cfg.c \
+../HAL/DHT11/dht.c \
 ../HAL/External_EEPROM/exEEPROM.c \
+../HAL/FP_R503/FP.c \
 ../HAL/KEYPAD/keypad.c \
 ../HAL/KEYPAD/keypad_cfg.c \
 ../HAL/LCD/LCD.c \
 ../HAL/LED/led.c \
 ../HAL/LED/led_cfg.c \
+../HAL/SERVO_MOTOR/servo.c \
 ../HAL/SSD/sevens_seg.c \
 ../HAL/SSD/seven_seg_cfg.c \
+../HAL/Ultrasonic_HC_SR04/US_Hc_SR04.c \
+../HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.c \
 ../HAL/UnipolarStepperMotor/UnipolarStepperMotor.c \
 ../HAL/UnipolarStepperMotor/UnipolarStepperMotor_cfg.c \
 ../main.c \
@@ -85,11 +105,15 @@ C_SRCS +=  \
 ../MCAL/DIO/dio_cfg.c \
 ../MCAL/EXTI/EXTI_prog.c \
 ../MCAL/SPI/spi.c \
-../MCAL/T1_PWM/pwm1.c \
 ../MCAL/TIMER0/timer0.c \
+../MCAL/TIMER1/timer1.c \
+../MCAL/TIMER2/timer2.c \
 ../MCAL/TWI/twi.c \
 ../MCAL/USART/uart.c \
-../MCAL/USART/uart_cf.c
+../MCAL/USART/uart_cf.c \
+../SERVICES/Delay/TD_delay.c \
+../SERVICES/PWM1/pwm1.c \
+../SERVICES/SW_ICU/SW_ICU.c
 
 
 PREPROCESSING_SRCS += 
@@ -99,25 +123,33 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-APP/ADC_main_autotrigger.o \
-APP/ADC_main_readFreerunning.o \
-APP/Ch1_PasswordbyTicks.o \
-APP/Ch2_sStopWatch.o \
-APP/exEEPROMmain.o \
-APP/FastPWMwithbuzzer.o \
-APP/SPImasterReceiver.o \
-APP/Timer_NormalMode.o \
-APP/TWI_tx.o \
+APP/Demo_projects/ADC_main_autotrigger.o \
+APP/Demo_projects/ADC_main_readFreerunning.o \
+APP/Demo_projects/Ch1_PasswordbyTicks.o \
+APP/Demo_projects/Ch2_sStopWatch.o \
+APP/Demo_projects/DHTmain.o \
+APP/Demo_projects/exEEPROMmain.o \
+APP/Demo_projects/FastPWMwithbuzzer.o \
+APP/Demo_projects/SPImasterReceiver.o \
+APP/Demo_projects/Timer_NormalMode.o \
+APP/Demo_projects/TWI_tx.o \
+APP/Smart_Home/Enterence_Control.o \
+APP/Smart_Home/Home_Control.o \
 HAL/Button/button.o \
 HAL/Button/button_cfg.o \
+HAL/DHT11/dht.o \
 HAL/External_EEPROM/exEEPROM.o \
+HAL/FP_R503/FP.o \
 HAL/KEYPAD/keypad.o \
 HAL/KEYPAD/keypad_cfg.o \
 HAL/LCD/LCD.o \
 HAL/LED/led.o \
 HAL/LED/led_cfg.o \
+HAL/SERVO_MOTOR/servo.o \
 HAL/SSD/sevens_seg.o \
 HAL/SSD/seven_seg_cfg.o \
+HAL/Ultrasonic_HC_SR04/US_Hc_SR04.o \
+HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.o \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor.o \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor_cfg.o \
 main.o \
@@ -127,32 +159,44 @@ MCAL/DIO/dio.o \
 MCAL/DIO/dio_cfg.o \
 MCAL/EXTI/EXTI_prog.o \
 MCAL/SPI/spi.o \
-MCAL/T1_PWM/pwm1.o \
 MCAL/TIMER0/timer0.o \
+MCAL/TIMER1/timer1.o \
+MCAL/TIMER2/timer2.o \
 MCAL/TWI/twi.o \
 MCAL/USART/uart.o \
-MCAL/USART/uart_cf.o
+MCAL/USART/uart_cf.o \
+SERVICES/Delay/TD_delay.o \
+SERVICES/PWM1/pwm1.o \
+SERVICES/SW_ICU/SW_ICU.o
 
 OBJS_AS_ARGS +=  \
-APP/ADC_main_autotrigger.o \
-APP/ADC_main_readFreerunning.o \
-APP/Ch1_PasswordbyTicks.o \
-APP/Ch2_sStopWatch.o \
-APP/exEEPROMmain.o \
-APP/FastPWMwithbuzzer.o \
-APP/SPImasterReceiver.o \
-APP/Timer_NormalMode.o \
-APP/TWI_tx.o \
+APP/Demo_projects/ADC_main_autotrigger.o \
+APP/Demo_projects/ADC_main_readFreerunning.o \
+APP/Demo_projects/Ch1_PasswordbyTicks.o \
+APP/Demo_projects/Ch2_sStopWatch.o \
+APP/Demo_projects/DHTmain.o \
+APP/Demo_projects/exEEPROMmain.o \
+APP/Demo_projects/FastPWMwithbuzzer.o \
+APP/Demo_projects/SPImasterReceiver.o \
+APP/Demo_projects/Timer_NormalMode.o \
+APP/Demo_projects/TWI_tx.o \
+APP/Smart_Home/Enterence_Control.o \
+APP/Smart_Home/Home_Control.o \
 HAL/Button/button.o \
 HAL/Button/button_cfg.o \
+HAL/DHT11/dht.o \
 HAL/External_EEPROM/exEEPROM.o \
+HAL/FP_R503/FP.o \
 HAL/KEYPAD/keypad.o \
 HAL/KEYPAD/keypad_cfg.o \
 HAL/LCD/LCD.o \
 HAL/LED/led.o \
 HAL/LED/led_cfg.o \
+HAL/SERVO_MOTOR/servo.o \
 HAL/SSD/sevens_seg.o \
 HAL/SSD/seven_seg_cfg.o \
+HAL/Ultrasonic_HC_SR04/US_Hc_SR04.o \
+HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.o \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor.o \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor_cfg.o \
 main.o \
@@ -162,32 +206,44 @@ MCAL/DIO/dio.o \
 MCAL/DIO/dio_cfg.o \
 MCAL/EXTI/EXTI_prog.o \
 MCAL/SPI/spi.o \
-MCAL/T1_PWM/pwm1.o \
 MCAL/TIMER0/timer0.o \
+MCAL/TIMER1/timer1.o \
+MCAL/TIMER2/timer2.o \
 MCAL/TWI/twi.o \
 MCAL/USART/uart.o \
-MCAL/USART/uart_cf.o
+MCAL/USART/uart_cf.o \
+SERVICES/Delay/TD_delay.o \
+SERVICES/PWM1/pwm1.o \
+SERVICES/SW_ICU/SW_ICU.o
 
 C_DEPS +=  \
-APP/ADC_main_autotrigger.d \
-APP/ADC_main_readFreerunning.d \
-APP/Ch1_PasswordbyTicks.d \
-APP/Ch2_sStopWatch.d \
-APP/exEEPROMmain.d \
-APP/FastPWMwithbuzzer.d \
-APP/SPImasterReceiver.d \
-APP/Timer_NormalMode.d \
-APP/TWI_tx.d \
+APP/Demo_projects/ADC_main_autotrigger.d \
+APP/Demo_projects/ADC_main_readFreerunning.d \
+APP/Demo_projects/Ch1_PasswordbyTicks.d \
+APP/Demo_projects/Ch2_sStopWatch.d \
+APP/Demo_projects/DHTmain.d \
+APP/Demo_projects/exEEPROMmain.d \
+APP/Demo_projects/FastPWMwithbuzzer.d \
+APP/Demo_projects/SPImasterReceiver.d \
+APP/Demo_projects/Timer_NormalMode.d \
+APP/Demo_projects/TWI_tx.d \
+APP/Smart_Home/Enterence_Control.d \
+APP/Smart_Home/Home_Control.d \
 HAL/Button/button.d \
 HAL/Button/button_cfg.d \
+HAL/DHT11/dht.d \
 HAL/External_EEPROM/exEEPROM.d \
+HAL/FP_R503/FP.d \
 HAL/KEYPAD/keypad.d \
 HAL/KEYPAD/keypad_cfg.d \
 HAL/LCD/LCD.d \
 HAL/LED/led.d \
 HAL/LED/led_cfg.d \
+HAL/SERVO_MOTOR/servo.d \
 HAL/SSD/sevens_seg.d \
 HAL/SSD/seven_seg_cfg.d \
+HAL/Ultrasonic_HC_SR04/US_Hc_SR04.d \
+HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.d \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor.d \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor_cfg.d \
 main.d \
@@ -197,32 +253,44 @@ MCAL/DIO/dio.d \
 MCAL/DIO/dio_cfg.d \
 MCAL/EXTI/EXTI_prog.d \
 MCAL/SPI/spi.d \
-MCAL/T1_PWM/pwm1.d \
 MCAL/TIMER0/timer0.d \
+MCAL/TIMER1/timer1.d \
+MCAL/TIMER2/timer2.d \
 MCAL/TWI/twi.d \
 MCAL/USART/uart.d \
-MCAL/USART/uart_cf.d
+MCAL/USART/uart_cf.d \
+SERVICES/Delay/TD_delay.d \
+SERVICES/PWM1/pwm1.d \
+SERVICES/SW_ICU/SW_ICU.d
 
 C_DEPS_AS_ARGS +=  \
-APP/ADC_main_autotrigger.d \
-APP/ADC_main_readFreerunning.d \
-APP/Ch1_PasswordbyTicks.d \
-APP/Ch2_sStopWatch.d \
-APP/exEEPROMmain.d \
-APP/FastPWMwithbuzzer.d \
-APP/SPImasterReceiver.d \
-APP/Timer_NormalMode.d \
-APP/TWI_tx.d \
+APP/Demo_projects/ADC_main_autotrigger.d \
+APP/Demo_projects/ADC_main_readFreerunning.d \
+APP/Demo_projects/Ch1_PasswordbyTicks.d \
+APP/Demo_projects/Ch2_sStopWatch.d \
+APP/Demo_projects/DHTmain.d \
+APP/Demo_projects/exEEPROMmain.d \
+APP/Demo_projects/FastPWMwithbuzzer.d \
+APP/Demo_projects/SPImasterReceiver.d \
+APP/Demo_projects/Timer_NormalMode.d \
+APP/Demo_projects/TWI_tx.d \
+APP/Smart_Home/Enterence_Control.d \
+APP/Smart_Home/Home_Control.d \
 HAL/Button/button.d \
 HAL/Button/button_cfg.d \
+HAL/DHT11/dht.d \
 HAL/External_EEPROM/exEEPROM.d \
+HAL/FP_R503/FP.d \
 HAL/KEYPAD/keypad.d \
 HAL/KEYPAD/keypad_cfg.d \
 HAL/LCD/LCD.d \
 HAL/LED/led.d \
 HAL/LED/led_cfg.d \
+HAL/SERVO_MOTOR/servo.d \
 HAL/SSD/sevens_seg.d \
 HAL/SSD/seven_seg_cfg.d \
+HAL/Ultrasonic_HC_SR04/US_Hc_SR04.d \
+HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.d \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor.d \
 HAL/UnipolarStepperMotor/UnipolarStepperMotor_cfg.d \
 main.d \
@@ -232,11 +300,15 @@ MCAL/DIO/dio.d \
 MCAL/DIO/dio_cfg.d \
 MCAL/EXTI/EXTI_prog.d \
 MCAL/SPI/spi.d \
-MCAL/T1_PWM/pwm1.d \
 MCAL/TIMER0/timer0.d \
+MCAL/TIMER1/timer1.d \
+MCAL/TIMER2/timer2.d \
 MCAL/TWI/twi.d \
 MCAL/USART/uart.d \
-MCAL/USART/uart_cf.d
+MCAL/USART/uart_cf.d \
+SERVICES/Delay/TD_delay.d \
+SERVICES/PWM1/pwm1.d \
+SERVICES/SW_ICU/SW_ICU.d
 
 OUTPUT_FILE_PATH +=NTI_atmega32.elf
 
@@ -252,63 +324,84 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-APP/ADC_main_autotrigger.o: ../APP/ADC_main_autotrigger.c
+APP/Demo_projects/ADC_main_autotrigger.o: ../APP/Demo_projects/ADC_main_autotrigger.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/ADC_main_readFreerunning.o: ../APP/ADC_main_readFreerunning.c
+APP/Demo_projects/ADC_main_readFreerunning.o: ../APP/Demo_projects/ADC_main_readFreerunning.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/Ch1_PasswordbyTicks.o: ../APP/Ch1_PasswordbyTicks.c
+APP/Demo_projects/Ch1_PasswordbyTicks.o: ../APP/Demo_projects/Ch1_PasswordbyTicks.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/Ch2_sStopWatch.o: ../APP/Ch2_sStopWatch.c
+APP/Demo_projects/Ch2_sStopWatch.o: ../APP/Demo_projects/Ch2_sStopWatch.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/exEEPROMmain.o: ../APP/exEEPROMmain.c
+APP/Demo_projects/DHTmain.o: ../APP/Demo_projects/DHTmain.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/FastPWMwithbuzzer.o: ../APP/FastPWMwithbuzzer.c
+APP/Demo_projects/exEEPROMmain.o: ../APP/Demo_projects/exEEPROMmain.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/SPImasterReceiver.o: ../APP/SPImasterReceiver.c
+APP/Demo_projects/FastPWMwithbuzzer.o: ../APP/Demo_projects/FastPWMwithbuzzer.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/Timer_NormalMode.o: ../APP/Timer_NormalMode.c
+APP/Demo_projects/SPImasterReceiver.o: ../APP/Demo_projects/SPImasterReceiver.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-APP/TWI_tx.o: ../APP/TWI_tx.c
+APP/Demo_projects/Timer_NormalMode.o: ../APP/Demo_projects/Timer_NormalMode.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Demo_projects/TWI_tx.o: ../APP/Demo_projects/TWI_tx.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Smart_Home/Enterence_Control.o: ../APP/Smart_Home/Enterence_Control.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Smart_Home/Home_Control.o: ../APP/Smart_Home/Home_Control.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -329,7 +422,21 @@ HAL/Button/button_cfg.o: ../HAL/Button/button_cfg.c
 	@echo Finished building: $<
 	
 
+HAL/DHT11/dht.o: ../HAL/DHT11/dht.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 HAL/External_EEPROM/exEEPROM.o: ../HAL/External_EEPROM/exEEPROM.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/FP_R503/FP.o: ../HAL/FP_R503/FP.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -371,6 +478,13 @@ HAL/LED/led_cfg.o: ../HAL/LED/led_cfg.c
 	@echo Finished building: $<
 	
 
+HAL/SERVO_MOTOR/servo.o: ../HAL/SERVO_MOTOR/servo.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 HAL/SSD/sevens_seg.o: ../HAL/SSD/sevens_seg.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -379,6 +493,20 @@ HAL/SSD/sevens_seg.o: ../HAL/SSD/sevens_seg.c
 	
 
 HAL/SSD/seven_seg_cfg.o: ../HAL/SSD/seven_seg_cfg.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/Ultrasonic_HC_SR04/US_Hc_SR04.o: ../HAL/Ultrasonic_HC_SR04/US_Hc_SR04.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.o: ../HAL/Ultrasonic_HC_SR04/US_HC_SR04_cfg.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -448,14 +576,21 @@ MCAL/SPI/spi.o: ../MCAL/SPI/spi.c
 	@echo Finished building: $<
 	
 
-MCAL/T1_PWM/pwm1.o: ../MCAL/T1_PWM/pwm1.c
+MCAL/TIMER0/timer0.o: ../MCAL/TIMER0/timer0.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-MCAL/TIMER0/timer0.o: ../MCAL/TIMER0/timer0.c
+MCAL/TIMER1/timer1.o: ../MCAL/TIMER1/timer1.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/TIMER2/timer2.o: ../MCAL/TIMER2/timer2.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -477,6 +612,27 @@ MCAL/USART/uart.o: ../MCAL/USART/uart.c
 	
 
 MCAL/USART/uart_cf.o: ../MCAL/USART/uart_cf.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/Delay/TD_delay.o: ../SERVICES/Delay/TD_delay.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/PWM1/pwm1.o: ../SERVICES/PWM1/pwm1.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/SW_ICU/SW_ICU.o: ../SERVICES/SW_ICU/SW_ICU.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

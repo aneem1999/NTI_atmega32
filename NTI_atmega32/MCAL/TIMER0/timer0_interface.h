@@ -8,6 +8,8 @@
 #ifndef TIMER0_INTERFACE_H_
 #define TIMER0_INTERFACE_H_
 
+#include "../LIB/std_types.h"
+
 /***************************************************************
  *  Timer0 Configurations  define
  ****************************************************************/
@@ -68,7 +70,7 @@ typedef enum
 } OC0_MOd_t;
 
 #define F_CPU 16000000U
-#define TickTime ((TIM0_PRESCALER * 1000000U) / F_CPU)
+#define TickTime ((TIM0_PRESCALER * 1000000.0) / F_CPU)
 
 /***************************************************************
  *  Timer0 APIs
@@ -94,8 +96,7 @@ u8 T0_u8ReadTimer();
 void T0_voidSetCallbackOC(pf copyofCB);
 void T0_voidSetCallbackOV(pf copyofCB);
 
-u32 T0_u32CalculatePreloadandOvf(u64 period, u8 *T0preload);
-
+void T0_voidWait_us(u64 period);
 void T0_voidSetOC0Mode(OC0_MOd_t MODE);
 
 #endif /* TIMER0_INTERFACE_H_ */

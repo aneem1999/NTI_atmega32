@@ -18,7 +18,7 @@ void LCD_WriteData(u8 cmd);
  
 void LCD_GoToXY(u8 row, u8 col);
 
-void LCD_WriteString(char *str, u8 row, u8 col);
+void LCD_WriteString(char *str);
 
 void LCD_ClearDisplay(void);
 

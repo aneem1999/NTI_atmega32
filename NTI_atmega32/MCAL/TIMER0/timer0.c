@@ -12,7 +12,6 @@
 #include "../LIB/bit_math.h"
 #include "timer0_interface.h"
 #include "timer0_cfg.h"
-
 void (*T0_OC_CallBackFun)();
 void (*T0_OVF_CallBackFun)();
 
@@ -76,23 +75,24 @@ u8 T0_u8ReadTimer()
     return TCNT0;
 }
 
-u32 T0_u32CalculatePreloadandOvf(u64 period, u8 *T0preload)
+void T0_voidWait_us(u64 period)
 {
     u32 NumOfOverflows = 0;
+    u8 T0preload = 0;
 
     u64 DesiredTicks, requiredNumOfOverflows;
     /* Calculate tick time*/
 
-    DesiredTicks = (u64)period / TickTime;
+    DesiredTicks = (u64)period / (f32)TickTime;
 
     if (DesiredTicks < TIMER0_MAX_TICKS)
     {
-        *T0preload = TIMER0_MAX_TICKS - DesiredTicks;
+        T0preload = TIMER0_MAX_TICKS - DesiredTicks;
         NumOfOverflows = 0;
     }
     else if (DesiredTicks == TIMER0_MAX_TICKS)
     {
-        *T0preload = 0;
+        T0preload = 0;
         NumOfOverflows = 1;
     }
     else if (DesiredTicks > TIMER0_MAX_TICKS)
@@ -108,10 +108,18 @@ u32 T0_u32CalculatePreloadandOvf(u64 period, u8 *T0preload)
             NumOfOverflows++;
         }
         // *T0preload = TIMER0_MAX_TICKS - (fraction *  TIMER0_MAX_TICKS /100 )
-        *T0preload = TIMER0_MAX_TICKS - DesiredTicks / NumOfOverflows;
+        T0preload = TIMER0_MAX_TICKS - DesiredTicks / NumOfOverflows;
     }
+    while (NumOfOverflows)
+    {
+        TCNT0 = T0preload;
 
-    return NumOfOverflows;
+        while (!CHECK_BIT(TIFR, 0))
+            ;
+        SET_BIT(TIFR, 0);
+
+        NumOfOverflows--;
+    }
 }
 void T0_voidSetCallbackOV(pf copyofCB)
 {

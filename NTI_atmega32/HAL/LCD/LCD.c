@@ -184,17 +184,13 @@ void LCD_GoToXY(u8 row, u8 col)
 }
 
 
-void LCD_WriteString(char *str,u8 row, u8 col)
+void LCD_WriteString(char *str)
 {
-	LCD_GoToXY(row,col);
 
 	for (u8 index = 0; str[index] ; index++)
 	{
 		LCD_WriteData(str[index]);
-		if((index+col) > LCD_NUM_OF_COLUMBS)
-		{
-			LCD_GoToXY(++row,0);
-		}
+		
 	}
 }
 
