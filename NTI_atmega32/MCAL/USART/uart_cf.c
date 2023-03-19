@@ -42,4 +42,4 @@ UART_Config_t UART_Configuration = {
 	.DataLength = 8,
 	.Parity = UART_PARTY_DISABLE,
 	.Stopbts = 1,
-	.BR = 57600};
+	.BR = 9600};

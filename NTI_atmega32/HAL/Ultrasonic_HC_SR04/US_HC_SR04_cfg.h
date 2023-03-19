@@ -23,6 +23,7 @@ typedef struct
     US_Channel_Num_t Channel_Num;
     dio_portId_t TRIG_PORT_Num;
     dio_channelId_t TRIG_PIN_Num;
+    f32 readingDistance;
 
 } US_Channel_Cfg_t;
 

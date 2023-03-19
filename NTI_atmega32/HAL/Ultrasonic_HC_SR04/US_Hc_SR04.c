@@ -18,7 +18,8 @@
 
 static volatile u16 US_T2_OVF = 0;
 static volatile u8 US_Flag = 0;
-static volatile u8 US_Done_Read_Flag = 0;
+
+static volatile US_Channel_Num_t G_US_channel;
 
 static volatile u16 US_Ton = 0;
 
@@ -35,7 +36,6 @@ void US_EXTI_CallBack()
     {
         TCNT2 = 0;
         US_T2_OVF = 0;
-        US_Done_Read_Flag = 0;
         // US_Ton = 0;
 
         T2_voidStart();
@@ -48,13 +48,14 @@ void US_EXTI_CallBack()
 
         US_Ton = (TCNT2 + US_T2_OVF * 256) * T2_TICK_TIME;
 
+        US_arrChannels[G_US_channel].readingDistance = US_Ton / 58.0;
+
         US_T2_OVF = 0;
         TCNT2 = 0;
 
         EXTI_Init(EXTI_0, RISINING_EDGE);
         T2_voidStop();
 
-        US_Done_Read_Flag = 1;
         US_Flag = 0;
     }
 }
@@ -83,7 +84,8 @@ void US_voidInit()
 
 f32 US_u8dRead_Distance_cm(US_Channel_Num_t US_channel)
 {
-    f32 distance = 0;
+    G_US_channel = US_channel;
+
     /*Trig pluse*/
 
     dio_vidWriteChannel(US_arrChannels[US_channel].TRIG_PORT_Num,
@@ -92,12 +94,8 @@ f32 US_u8dRead_Distance_cm(US_Channel_Num_t US_channel)
     TD_delay_us(10);
     dio_vidWriteChannel(US_arrChannels[US_channel].TRIG_PORT_Num,
                         US_arrChannels[US_channel].TRIG_PIN_Num, STD_LOW);
-    // while (US_Flag != 1)
-    //     ;
 
     TD_delay_ms(500);
 
-    distance = US_Ton / 58.0;
-
-    return distance;
+    return US_arrChannels[US_channel].readingDistance;
 }

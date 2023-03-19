@@ -9,8 +9,8 @@
 #include "../MCAL/DIO/dio.h"
 
 US_Channel_Cfg_t US_arrChannels[] = {
-    {US_CHANNEL_0, DIO_PORTC, DIO_PIN0},
-    {US_CHANNEL_1, DIO_PORTC, DIO_PIN1}
+    {US_CHANNEL_0, DIO_PORTC, DIO_PIN2, 0},
+    {US_CHANNEL_1, DIO_PORTC, DIO_PIN3, 0}
 
 };
 

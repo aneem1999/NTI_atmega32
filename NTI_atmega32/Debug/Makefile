@@ -44,6 +44,8 @@ SUBDIRS :=  \
 ../HAL/External_EEPROM \
 ../HAL/FP_R503 \
 ../HAL/DHT11 \
+../HAL/OLED \
+../HAL/RFID \
 ../HAL/Ultrasonic_HC_SR04 \
 ../HAL/SERVO_MOTOR \
 ../HAL/UnipolarStepperMotor \
@@ -52,6 +54,8 @@ SUBDIRS :=  \
 ../MCAL/ADC \
 ../MCAL/DIO \
 ../MCAL/EXTI \
+../MCAL/I2C \
+../MCAL/SPI2 \
 ../MCAL/TIMER2 \
 ../MCAL/TIMER1 \
 ../MCAL/TWI \
@@ -79,7 +83,10 @@ C_SRCS +=  \
 ../APP/Demo_projects/SPImasterReceiver.c \
 ../APP/Demo_projects/Timer_NormalMode.c \
 ../APP/Demo_projects/TWI_tx.c \
-../APP/Smart_Home/Enterence_Control.c \
+../APP/Demo_projects/USmain.c \
+../APP/Smart_Home/Enterene/Enterence_Control.c \
+../APP/Smart_Home/Enterene/password.c \
+../APP/Smart_Home/Enterene/RFID_Take_Compare.c \
 ../APP/Smart_Home/Home_Control.c \
 ../HAL/Button/button.c \
 ../HAL/Button/button_cfg.c \
@@ -91,6 +98,8 @@ C_SRCS +=  \
 ../HAL/LCD/LCD.c \
 ../HAL/LED/led.c \
 ../HAL/LED/led_cfg.c \
+../HAL/OLED/OLED_Prog.c \
+../HAL/RFID/RFID.c \
 ../HAL/SERVO_MOTOR/servo.c \
 ../HAL/SSD/sevens_seg.c \
 ../HAL/SSD/seven_seg_cfg.c \
@@ -104,6 +113,8 @@ C_SRCS +=  \
 ../MCAL/DIO/dio.c \
 ../MCAL/DIO/dio_cfg.c \
 ../MCAL/EXTI/EXTI_prog.c \
+../MCAL/I2C/I2C_Prog.c \
+../MCAL/SPI2/SPI.c \
 ../MCAL/SPI/spi.c \
 ../MCAL/TIMER0/timer0.c \
 ../MCAL/TIMER1/timer1.c \
@@ -133,7 +144,10 @@ APP/Demo_projects/FastPWMwithbuzzer.o \
 APP/Demo_projects/SPImasterReceiver.o \
 APP/Demo_projects/Timer_NormalMode.o \
 APP/Demo_projects/TWI_tx.o \
-APP/Smart_Home/Enterence_Control.o \
+APP/Demo_projects/USmain.o \
+APP/Smart_Home/Enterene/Enterence_Control.o \
+APP/Smart_Home/Enterene/password.o \
+APP/Smart_Home/Enterene/RFID_Take_Compare.o \
 APP/Smart_Home/Home_Control.o \
 HAL/Button/button.o \
 HAL/Button/button_cfg.o \
@@ -145,6 +159,8 @@ HAL/KEYPAD/keypad_cfg.o \
 HAL/LCD/LCD.o \
 HAL/LED/led.o \
 HAL/LED/led_cfg.o \
+HAL/OLED/OLED_Prog.o \
+HAL/RFID/RFID.o \
 HAL/SERVO_MOTOR/servo.o \
 HAL/SSD/sevens_seg.o \
 HAL/SSD/seven_seg_cfg.o \
@@ -158,6 +174,8 @@ MCAL/ADC/ADC_cfg.o \
 MCAL/DIO/dio.o \
 MCAL/DIO/dio_cfg.o \
 MCAL/EXTI/EXTI_prog.o \
+MCAL/I2C/I2C_Prog.o \
+MCAL/SPI2/SPI.o \
 MCAL/SPI/spi.o \
 MCAL/TIMER0/timer0.o \
 MCAL/TIMER1/timer1.o \
@@ -180,7 +198,10 @@ APP/Demo_projects/FastPWMwithbuzzer.o \
 APP/Demo_projects/SPImasterReceiver.o \
 APP/Demo_projects/Timer_NormalMode.o \
 APP/Demo_projects/TWI_tx.o \
-APP/Smart_Home/Enterence_Control.o \
+APP/Demo_projects/USmain.o \
+APP/Smart_Home/Enterene/Enterence_Control.o \
+APP/Smart_Home/Enterene/password.o \
+APP/Smart_Home/Enterene/RFID_Take_Compare.o \
 APP/Smart_Home/Home_Control.o \
 HAL/Button/button.o \
 HAL/Button/button_cfg.o \
@@ -192,6 +213,8 @@ HAL/KEYPAD/keypad_cfg.o \
 HAL/LCD/LCD.o \
 HAL/LED/led.o \
 HAL/LED/led_cfg.o \
+HAL/OLED/OLED_Prog.o \
+HAL/RFID/RFID.o \
 HAL/SERVO_MOTOR/servo.o \
 HAL/SSD/sevens_seg.o \
 HAL/SSD/seven_seg_cfg.o \
@@ -205,6 +228,8 @@ MCAL/ADC/ADC_cfg.o \
 MCAL/DIO/dio.o \
 MCAL/DIO/dio_cfg.o \
 MCAL/EXTI/EXTI_prog.o \
+MCAL/I2C/I2C_Prog.o \
+MCAL/SPI2/SPI.o \
 MCAL/SPI/spi.o \
 MCAL/TIMER0/timer0.o \
 MCAL/TIMER1/timer1.o \
@@ -227,7 +252,10 @@ APP/Demo_projects/FastPWMwithbuzzer.d \
 APP/Demo_projects/SPImasterReceiver.d \
 APP/Demo_projects/Timer_NormalMode.d \
 APP/Demo_projects/TWI_tx.d \
-APP/Smart_Home/Enterence_Control.d \
+APP/Demo_projects/USmain.d \
+APP/Smart_Home/Enterene/Enterence_Control.d \
+APP/Smart_Home/Enterene/password.d \
+APP/Smart_Home/Enterene/RFID_Take_Compare.d \
 APP/Smart_Home/Home_Control.d \
 HAL/Button/button.d \
 HAL/Button/button_cfg.d \
@@ -239,6 +267,8 @@ HAL/KEYPAD/keypad_cfg.d \
 HAL/LCD/LCD.d \
 HAL/LED/led.d \
 HAL/LED/led_cfg.d \
+HAL/OLED/OLED_Prog.d \
+HAL/RFID/RFID.d \
 HAL/SERVO_MOTOR/servo.d \
 HAL/SSD/sevens_seg.d \
 HAL/SSD/seven_seg_cfg.d \
@@ -252,6 +282,8 @@ MCAL/ADC/ADC_cfg.d \
 MCAL/DIO/dio.d \
 MCAL/DIO/dio_cfg.d \
 MCAL/EXTI/EXTI_prog.d \
+MCAL/I2C/I2C_Prog.d \
+MCAL/SPI2/SPI.d \
 MCAL/SPI/spi.d \
 MCAL/TIMER0/timer0.d \
 MCAL/TIMER1/timer1.d \
@@ -274,7 +306,10 @@ APP/Demo_projects/FastPWMwithbuzzer.d \
 APP/Demo_projects/SPImasterReceiver.d \
 APP/Demo_projects/Timer_NormalMode.d \
 APP/Demo_projects/TWI_tx.d \
-APP/Smart_Home/Enterence_Control.d \
+APP/Demo_projects/USmain.d \
+APP/Smart_Home/Enterene/Enterence_Control.d \
+APP/Smart_Home/Enterene/password.d \
+APP/Smart_Home/Enterene/RFID_Take_Compare.d \
 APP/Smart_Home/Home_Control.d \
 HAL/Button/button.d \
 HAL/Button/button_cfg.d \
@@ -286,6 +321,8 @@ HAL/KEYPAD/keypad_cfg.d \
 HAL/LCD/LCD.d \
 HAL/LED/led.d \
 HAL/LED/led_cfg.d \
+HAL/OLED/OLED_Prog.d \
+HAL/RFID/RFID.d \
 HAL/SERVO_MOTOR/servo.d \
 HAL/SSD/sevens_seg.d \
 HAL/SSD/seven_seg_cfg.d \
@@ -299,6 +336,8 @@ MCAL/ADC/ADC_cfg.d \
 MCAL/DIO/dio.d \
 MCAL/DIO/dio_cfg.d \
 MCAL/EXTI/EXTI_prog.d \
+MCAL/I2C/I2C_Prog.d \
+MCAL/SPI2/SPI.d \
 MCAL/SPI/spi.d \
 MCAL/TIMER0/timer0.d \
 MCAL/TIMER1/timer1.d \
@@ -394,7 +433,28 @@ APP/Demo_projects/TWI_tx.o: ../APP/Demo_projects/TWI_tx.c
 	@echo Finished building: $<
 	
 
-APP/Smart_Home/Enterence_Control.o: ../APP/Smart_Home/Enterence_Control.c
+APP/Demo_projects/USmain.o: ../APP/Demo_projects/USmain.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Smart_Home/Enterene/Enterence_Control.o: ../APP/Smart_Home/Enterene/Enterence_Control.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Smart_Home/Enterene/password.o: ../APP/Smart_Home/Enterene/password.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Smart_Home/Enterene/RFID_Take_Compare.o: ../APP/Smart_Home/Enterene/RFID_Take_Compare.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -472,6 +532,20 @@ HAL/LED/led.o: ../HAL/LED/led.c
 	
 
 HAL/LED/led_cfg.o: ../HAL/LED/led_cfg.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/OLED/OLED_Prog.o: ../HAL/OLED/OLED_Prog.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/RFID/RFID.o: ../HAL/RFID/RFID.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -563,6 +637,20 @@ MCAL/DIO/dio_cfg.o: ../MCAL/DIO/dio_cfg.c
 	
 
 MCAL/EXTI/EXTI_prog.o: ../MCAL/EXTI/EXTI_prog.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/I2C/I2C_Prog.o: ../MCAL/I2C/I2C_Prog.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/SPI2/SPI.o: ../MCAL/SPI2/SPI.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

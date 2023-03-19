@@ -1,57 +1,3 @@
-/*
- * NTI_atmega32.c
- *
- * Created: 3/3/2023 10:08:32 AM
- * Author : ncm
- */
-
-#if 0
-#include "../MCAL/USART/uart_interface.h"
-#include "../HAL/LCD/LCD.h"
-#include "../HAL/LED/led.h"
-
-#include "../MCAL/TIMER2/timer2_interface.h"
-#include "../MCAL/TIMER0/timer0_interface.h"
-#include "../HAL/Ultrasonic_HC_SR04/US_HC_SR04.h"
-
-#include <string.h>
-
-#define F_CPU 16000000U
-#include <util/delay.h>
-
-#include <stdlib.h>
-
-#include "../SERVICES/Delay/TD_delay.h"
-
-
-
-char Tstr[6];
-int main()
-{
-	LCD_Init();
-	led_viInit();
-	f32 d = 0, d1 = 0;
-	US_voidInit();
-
-	while (1)
-	{
-		d = US_u8dRead_Distance_cm(US_CHANNEL_0);
-
-		LCD_GoToXY(0, 0);
-		LCD_WriteString("Distance 0 = ");
-		dtostrf(d, 3, 3, Tstr);
-		LCD_WriteString(Tstr);
-
-		d1 = US_u8dRead_Distance_cm(US_CHANNEL_1);
-		
-		LCD_GoToXY(2, 0);
-		LCD_WriteString("Distance 1 = ");
-		dtostrf(d1, 3, 3, Tstr);
-		LCD_WriteString(Tstr);
-		_delay_ms(500);
-	}
-}
-#endif
 
 /*
  * NTI_atmega32.c
@@ -67,43 +13,101 @@ int main()
 #include <stdlib.h>
 #define F_CPU 16000000U
 #include "util/delay.h"
+#include "../HAL/KEYPAD/keypad.h"
+#include "../HAL/Ultrasonic_HC_SR04/US_HC_SR04.h"
+#include "../APP/Smart_Home/Enterene/Entrance_Control.h"
+#include "../HAL/SERVO_MOTOR/servo.h"
 
-#if 1
-char data[5];
+#include "../HAL/RFID/RFID.h"
+
+#if 0
+char str[5];
 int main()
 {
-	u16 RH = 0, T = 0;
+	dio_vidConfigChannel(DIO_PORTA, DIO_PIN4, OUTPUT);
+	dio_vidConfigChannel(DIO_PORTA, DIO_PIN5, OUTPUT);
+	dio_vidConfigChannel(DIO_PORTA, DIO_PIN6, OUTPUT);
+
+	SPI_Init();
 	LCD_Init();
-	led_viInit();
+	mcrf522_init();
+	u8 byte;
+	u8 buffer[4];
+	GIE_ENABLE();
+
 	while (1)
 	{
-		if (DHT_enuReadData(&RH, &T) == ERROR_READ)
+		byte = DetectCard();
+		LCD_ClearDisplay();
+		LCD_GoToXY(0, 0);
+		if (byte == 1)
 		{
-			LCD_WriteString("ERROR ");
+			dio_vidWriteChannel(DIO_PORTA, DIO_PIN4, STD_HIGH);
+			GetCardId(buffer);
+
+			for (u8 i = 0; i < 4; i++)
+			{
+				itoa(buffer[i], str, 10);
+				LCD_WriteString(str);
+				LCD_WriteData(' ');
+			}
+		}
+		_delay_ms(500);
+	}
+#endif
+
+#if 0
+	u8 k = 0;
+
+	while (1)
+	{
+		char name[16];
+		LCD_ClearDisplay();
+		LCD_GoToXY(0, 0);
+
+		k = Take_Compare_RFID(name);
+		if (k != 0xff)
+		{
+			LCD_WriteString(NAME_Arr[k]);
 		}
 		else
 		{
+			LCD_WriteString("ERROR");
+		}
+		_delay_ms(500);
+	}
+}
+#endif
+
 #if 1
 
-			LCD_GoToXY(0, 0); /* Enter column and row position */
-			LCD_WriteString("Humidity =");
-			LCD_GoToXY(1, 0);
-			LCD_WriteString("Temp = ");
-			itoa(RH, data, 10);
-			LCD_GoToXY(0, 11);
-			LCD_WriteString(data);
-			LCD_WriteString(".");
+int main()
+{
+	Entrance_Init();
 
-			itoa(T, data, 10);
-			LCD_GoToXY(1, 6);
-			LCD_WriteString(data);
-			LCD_WriteString("C ");
+	while (1)
+	{
 
-#endif
-		}
-		_delay_ms(1000);
+		Entrance_Start();
 	}
 }
 
 #endif
 
+#if 0
+
+int main()
+{
+	SERVO_voidInit();
+	u8 a = 10;
+	while (1)
+	{
+
+		SERVO_voidGotoAngle(a);
+		a += 10;
+
+		_delay_ms(1000);
+	}
+}
+
+#endif

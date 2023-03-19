@@ -167,7 +167,25 @@
     <Compile Include="APP\Demo_projects\TWI_tx.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="APP\Smart_Home\Enterence_Control.c">
+    <Compile Include="APP\Demo_projects\USmain.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterene\Enterence_Control.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterene\Entrance_Control.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterene\password.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterene\password.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterene\RFID_Take_Compare.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\Enterene\RFID_Take_Compare.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="APP\Smart_Home\Home_Control.c">
@@ -237,6 +255,21 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\LED\led_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\OLED\OLED_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\OLED\OLED_Prog.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\RFID\RFID.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\RFID\RFID.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\RFID\RFID_REG.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\SERVO_MOTOR\servo.c">
@@ -324,6 +357,24 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\EXTI\EXTI_prog.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\I2C\I2C_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\I2C\I2C_Prog.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\I2C\I2C_Reg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\SPI2\SPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\SPI2\SPI.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\SPI2\SPI_REG.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\SPI\spi.c">
@@ -414,6 +465,8 @@
     <Folder Include="HAL\External_EEPROM" />
     <Folder Include="HAL\FP_R503" />
     <Folder Include="HAL\DHT11" />
+    <Folder Include="HAL\OLED" />
+    <Folder Include="HAL\RFID" />
     <Folder Include="HAL\Ultrasonic_HC_SR04" />
     <Folder Include="HAL\SERVO_MOTOR" />
     <Folder Include="HAL\UnipolarStepperMotor" />
@@ -422,6 +475,8 @@
     <Folder Include="MCAL\ADC" />
     <Folder Include="MCAL\DIO" />
     <Folder Include="MCAL\EXTI" />
+    <Folder Include="MCAL\I2C" />
+    <Folder Include="MCAL\SPI2" />
     <Folder Include="MCAL\TIMER2" />
     <Folder Include="MCAL\TIMER1" />
     <Folder Include="MCAL\TWI" />

@@ -22,7 +22,13 @@ APP\Demo_projects\Timer_NormalMode.c
 
 APP\Demo_projects\TWI_tx.c
 
-APP\Smart_Home\Enterence_Control.c
+APP\Demo_projects\USmain.c
+
+APP\Smart_Home\Enterene\Enterence_Control.c
+
+APP\Smart_Home\Enterene\password.c
+
+APP\Smart_Home\Enterene\RFID_Take_Compare.c
 
 APP\Smart_Home\Home_Control.c
 
@@ -45,6 +51,10 @@ HAL\LCD\LCD.c
 HAL\LED\led.c
 
 HAL\LED\led_cfg.c
+
+HAL\OLED\OLED_Prog.c
+
+HAL\RFID\RFID.c
 
 HAL\SERVO_MOTOR\servo.c
 
@@ -71,6 +81,10 @@ MCAL\DIO\dio.c
 MCAL\DIO\dio_cfg.c
 
 MCAL\EXTI\EXTI_prog.c
+
+MCAL\I2C\I2C_Prog.c
+
+MCAL\SPI2\SPI.c
 
 MCAL\SPI\spi.c
 
