@@ -49,7 +49,7 @@ void ADC_voidInit(ADC_Config_t *copyofADCconfig)
 
 	/*channel selection*/
 	ADMUX &= 0x70; /* Bits 4:0 – MUX4:0: Analog Channel and Gain Selection Bits */
-	ADMUX |= ((copyofADCconfig->channel << 4) & 0x0f);
+	ADMUX |= ((copyofADCconfig->channel) & 0x0f);
 
 	/* prescaller selection*/
 	ADCSRA &= 0xf8; /*Bits 2:0 – ADPS2:0: ADC Prescaler Select Bits*/

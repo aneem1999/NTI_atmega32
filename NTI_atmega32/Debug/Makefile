@@ -34,9 +34,11 @@ LINKER_SCRIPT_DEP:=
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
 ../APP/Demo_projects \
+../APP/Rtos_Demos \
 ../APP/Smart_Home \
 ../APP/Smart_Home/Enterene \
 ../APP/Smart_Home/Home_Control \
+../APP/Smart_Home/EnterenceSystem \
 ../HAL/Button \
 ../HAL/KEYPAD \
 ../HAL/LCD \
@@ -67,6 +69,8 @@ SUBDIRS :=  \
 ../APP \
 ../SERVICES \
 ../SERVICES/Delay \
+../SERVICES/COM_MANAGER \
+../SERVICES/FreeRTOS \
 ../SERVICES/SW_ICU \
 ../SERVICES/PWM1
 
@@ -84,6 +88,8 @@ C_SRCS +=  \
 ../APP/Demo_projects/Timer_NormalMode.c \
 ../APP/Demo_projects/TWI_tx.c \
 ../APP/Demo_projects/USmain.c \
+../APP/Rtos_Demos/mainTrfLights_freertos.c \
+../APP/Smart_Home/EnterenceSystem/system.c \
 ../APP/Smart_Home/Enterene/Enterence_Control.c \
 ../APP/Smart_Home/Enterene/password.c \
 ../APP/Smart_Home/Enterene/RFID_Take_Compare.c \
@@ -122,7 +128,18 @@ C_SRCS +=  \
 ../MCAL/TWI/twi.c \
 ../MCAL/USART/uart.c \
 ../MCAL/USART/uart_cf.c \
+../SERVICES/COM_MANAGER/ComManage.c \
 ../SERVICES/Delay/TD_delay.c \
+../SERVICES/FreeRTOS/croutine.c \
+../SERVICES/FreeRTOS/event_groups.c \
+../SERVICES/FreeRTOS/heap_4.c \
+../SERVICES/FreeRTOS/list.c \
+../SERVICES/FreeRTOS/mpu_wrappers.c \
+../SERVICES/FreeRTOS/port.c \
+../SERVICES/FreeRTOS/queue.c \
+../SERVICES/FreeRTOS/stream_buffer.c \
+../SERVICES/FreeRTOS/tasks.c \
+../SERVICES/FreeRTOS/timers.c \
 ../SERVICES/PWM1/pwm1.c \
 ../SERVICES/SW_ICU/SW_ICU.c
 
@@ -145,6 +162,8 @@ APP/Demo_projects/SPImasterReceiver.o \
 APP/Demo_projects/Timer_NormalMode.o \
 APP/Demo_projects/TWI_tx.o \
 APP/Demo_projects/USmain.o \
+APP/Rtos_Demos/mainTrfLights_freertos.o \
+APP/Smart_Home/EnterenceSystem/system.o \
 APP/Smart_Home/Enterene/Enterence_Control.o \
 APP/Smart_Home/Enterene/password.o \
 APP/Smart_Home/Enterene/RFID_Take_Compare.o \
@@ -183,7 +202,18 @@ MCAL/TIMER2/timer2.o \
 MCAL/TWI/twi.o \
 MCAL/USART/uart.o \
 MCAL/USART/uart_cf.o \
+SERVICES/COM_MANAGER/ComManage.o \
 SERVICES/Delay/TD_delay.o \
+SERVICES/FreeRTOS/croutine.o \
+SERVICES/FreeRTOS/event_groups.o \
+SERVICES/FreeRTOS/heap_4.o \
+SERVICES/FreeRTOS/list.o \
+SERVICES/FreeRTOS/mpu_wrappers.o \
+SERVICES/FreeRTOS/port.o \
+SERVICES/FreeRTOS/queue.o \
+SERVICES/FreeRTOS/stream_buffer.o \
+SERVICES/FreeRTOS/tasks.o \
+SERVICES/FreeRTOS/timers.o \
 SERVICES/PWM1/pwm1.o \
 SERVICES/SW_ICU/SW_ICU.o
 
@@ -199,6 +229,8 @@ APP/Demo_projects/SPImasterReceiver.o \
 APP/Demo_projects/Timer_NormalMode.o \
 APP/Demo_projects/TWI_tx.o \
 APP/Demo_projects/USmain.o \
+APP/Rtos_Demos/mainTrfLights_freertos.o \
+APP/Smart_Home/EnterenceSystem/system.o \
 APP/Smart_Home/Enterene/Enterence_Control.o \
 APP/Smart_Home/Enterene/password.o \
 APP/Smart_Home/Enterene/RFID_Take_Compare.o \
@@ -237,7 +269,18 @@ MCAL/TIMER2/timer2.o \
 MCAL/TWI/twi.o \
 MCAL/USART/uart.o \
 MCAL/USART/uart_cf.o \
+SERVICES/COM_MANAGER/ComManage.o \
 SERVICES/Delay/TD_delay.o \
+SERVICES/FreeRTOS/croutine.o \
+SERVICES/FreeRTOS/event_groups.o \
+SERVICES/FreeRTOS/heap_4.o \
+SERVICES/FreeRTOS/list.o \
+SERVICES/FreeRTOS/mpu_wrappers.o \
+SERVICES/FreeRTOS/port.o \
+SERVICES/FreeRTOS/queue.o \
+SERVICES/FreeRTOS/stream_buffer.o \
+SERVICES/FreeRTOS/tasks.o \
+SERVICES/FreeRTOS/timers.o \
 SERVICES/PWM1/pwm1.o \
 SERVICES/SW_ICU/SW_ICU.o
 
@@ -253,6 +296,8 @@ APP/Demo_projects/SPImasterReceiver.d \
 APP/Demo_projects/Timer_NormalMode.d \
 APP/Demo_projects/TWI_tx.d \
 APP/Demo_projects/USmain.d \
+APP/Rtos_Demos/mainTrfLights_freertos.d \
+APP/Smart_Home/EnterenceSystem/system.d \
 APP/Smart_Home/Enterene/Enterence_Control.d \
 APP/Smart_Home/Enterene/password.d \
 APP/Smart_Home/Enterene/RFID_Take_Compare.d \
@@ -291,7 +336,18 @@ MCAL/TIMER2/timer2.d \
 MCAL/TWI/twi.d \
 MCAL/USART/uart.d \
 MCAL/USART/uart_cf.d \
+SERVICES/COM_MANAGER/ComManage.d \
 SERVICES/Delay/TD_delay.d \
+SERVICES/FreeRTOS/croutine.d \
+SERVICES/FreeRTOS/event_groups.d \
+SERVICES/FreeRTOS/heap_4.d \
+SERVICES/FreeRTOS/list.d \
+SERVICES/FreeRTOS/mpu_wrappers.d \
+SERVICES/FreeRTOS/port.d \
+SERVICES/FreeRTOS/queue.d \
+SERVICES/FreeRTOS/stream_buffer.d \
+SERVICES/FreeRTOS/tasks.d \
+SERVICES/FreeRTOS/timers.d \
 SERVICES/PWM1/pwm1.d \
 SERVICES/SW_ICU/SW_ICU.d
 
@@ -307,6 +363,8 @@ APP/Demo_projects/SPImasterReceiver.d \
 APP/Demo_projects/Timer_NormalMode.d \
 APP/Demo_projects/TWI_tx.d \
 APP/Demo_projects/USmain.d \
+APP/Rtos_Demos/mainTrfLights_freertos.d \
+APP/Smart_Home/EnterenceSystem/system.d \
 APP/Smart_Home/Enterene/Enterence_Control.d \
 APP/Smart_Home/Enterene/password.d \
 APP/Smart_Home/Enterene/RFID_Take_Compare.d \
@@ -345,7 +403,18 @@ MCAL/TIMER2/timer2.d \
 MCAL/TWI/twi.d \
 MCAL/USART/uart.d \
 MCAL/USART/uart_cf.d \
+SERVICES/COM_MANAGER/ComManage.d \
 SERVICES/Delay/TD_delay.d \
+SERVICES/FreeRTOS/croutine.d \
+SERVICES/FreeRTOS/event_groups.d \
+SERVICES/FreeRTOS/heap_4.d \
+SERVICES/FreeRTOS/list.d \
+SERVICES/FreeRTOS/mpu_wrappers.d \
+SERVICES/FreeRTOS/port.d \
+SERVICES/FreeRTOS/queue.d \
+SERVICES/FreeRTOS/stream_buffer.d \
+SERVICES/FreeRTOS/tasks.d \
+SERVICES/FreeRTOS/timers.d \
 SERVICES/PWM1/pwm1.d \
 SERVICES/SW_ICU/SW_ICU.d
 
@@ -434,6 +503,20 @@ APP/Demo_projects/TWI_tx.o: ../APP/Demo_projects/TWI_tx.c
 	
 
 APP/Demo_projects/USmain.o: ../APP/Demo_projects/USmain.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Rtos_Demos/mainTrfLights_freertos.o: ../APP/Rtos_Demos/mainTrfLights_freertos.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+APP/Smart_Home/EnterenceSystem/system.o: ../APP/Smart_Home/EnterenceSystem/system.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -706,7 +789,84 @@ MCAL/USART/uart_cf.o: ../MCAL/USART/uart_cf.c
 	@echo Finished building: $<
 	
 
+SERVICES/COM_MANAGER/ComManage.o: ../SERVICES/COM_MANAGER/ComManage.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 SERVICES/Delay/TD_delay.o: ../SERVICES/Delay/TD_delay.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/croutine.o: ../SERVICES/FreeRTOS/croutine.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/event_groups.o: ../SERVICES/FreeRTOS/event_groups.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/heap_4.o: ../SERVICES/FreeRTOS/heap_4.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/list.o: ../SERVICES/FreeRTOS/list.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/mpu_wrappers.o: ../SERVICES/FreeRTOS/mpu_wrappers.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/port.o: ../SERVICES/FreeRTOS/port.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/queue.o: ../SERVICES/FreeRTOS/queue.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/stream_buffer.o: ../SERVICES/FreeRTOS/stream_buffer.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/tasks.o: ../SERVICES/FreeRTOS/tasks.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+SERVICES/FreeRTOS/timers.o: ../SERVICES/FreeRTOS/timers.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../LIB" -I"../MCAL" -I"../HAL" -I"../APP"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

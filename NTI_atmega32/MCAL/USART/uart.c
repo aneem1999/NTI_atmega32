@@ -23,16 +23,9 @@ UART_ERROR_t UART_Init()
     UART_ERROR_t UART_state = UART_CONFIG_OK;
     u8 UCSRC_temp = 0;
     /* Set baud rate */
+    UBRRL = (unsigned char)(UBRR_VAL(UART_Configuration.BR));
+
     UBRRH = (unsigned char)(UBRR_VAL(UART_Configuration.BR) >> 8);
-    UBRRL = (unsigned char)UBRR_VAL(UART_Configuration.BR);
-#if 0
-    
-    /* Enable receiver and transmitter */
-    UCSRB = (1 << 4) | (1 << 3);
-    /* Set frame format: 8data, 2stop bit */
-    UCSRC = (1 << 7) | (3 << 1);
-#endif
-#if 1
 
     // UCSRC access
     SET_BIT(UCSRC_temp, 7);
@@ -113,7 +106,6 @@ UART_ERROR_t UART_Init()
     }
 
     UCSRC = UCSRC_temp;
-#endif
     return UART_state;
 }
 
@@ -131,8 +123,8 @@ UART_ERROR_t UART_TransmitBusyWait(u8 data)
     return UART_state;
 }
 
-/***************************************************************/
-u8 RX_No_Block_Buffer ='z';
+/****************************** Recieve No Block *********************************/
+u8 RX_No_Block_Buffer = 'z';
 UART_ERROR_t RX_No_Block_State;
 
 void CB_RX()
@@ -144,8 +136,8 @@ void CB_RX()
     }
     else
     {
-    RX_No_Block_Buffer = UDR;
-    
+        RX_No_Block_Buffer = UDR;
+
         RX_No_Block_State = UART_RECIEVE_OK;
     }
 }
@@ -183,68 +175,6 @@ UART_ERROR_t UART_ReceiveBusyWait(u8 *data)
     return UART_state;
 }
 
-/************************************************************************************/
-u8 TX_Buffer[200];
-
-void ISR_TXC()
-{
-
-    static u8 index = 1;
-
-    if (TX_Buffer[index] != '\0')
-    {
-        UDR = TX_Buffer[index];
-        index++;
-    }
-    else
-    {
-        index = 1;
-        // stop interrupt
-        CLEAR_BIT(UCSRB, 6);
-    }
-}
-void UART_TransmitString_NoBlock(u8 *str)
-{
-
-    u8 index = 0;
-
-    while (str[index] != '\0')
-    {
-        TX_Buffer[index] = str[index];
-        index++;
-    }
-    TX_Buffer[index] = '\0';
-
-    UART_TXC_IEN(ISR_TXC);
-    UART_TransmitBusyWait(TX_Buffer[0]);
-}
-
-/************************************************************************************/
-/************************************************************************************/
-u8 *RX_Buffer;
-static void ISR_RXC()
-{
-    static u8 index = 0;
-    RX_Buffer[index] = UDR;
-    if (UDR == Default_STOP)
-    {
-        index = 0;
-        // stop interrupt
-        CLEAR_BIT(UCSRB, 7);
-    }
-    else
-    {
-        index++;
-    }
-}
-void UART_ReceiveString_NoBlock(u8 *str)
-{
-    RX_Buffer = str;
-    UART_RXC_IEN(ISR_RXC);
-}
-
-/************************************************************************************/
-
 void UART_RXC_IEN(void (*callbackfun)())
 {
     // enable RXI
@@ -265,6 +195,16 @@ void UART_UDRE_IEN(void (*callbackfun)())
     SET_BIT(UCSRB, 5);
     // Set callback function
     UART_UDRE_CallBack = callbackfun;
+}
+
+void UART_Set_Data_Reg(u8 value)
+{
+    UDR = value;
+}
+
+u8 UART_Read_Data_Reg(void)
+{
+    return UDR;
 }
 
 /*

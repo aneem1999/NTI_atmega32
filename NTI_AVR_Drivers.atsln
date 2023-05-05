@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "NTI_AVR_Drivers", "NTI_AVR_Drivers\NTI_AVR_Drivers.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "NTI_atmega32", "NTI_atmega32\NTI_atmega32.cproj", "{24535C3D-C44D-4394-AF77-5B87408EAC04}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Testproject", "Testproject\Testproject.cproj", "{23694739-D33C-489A-A156-2F1A72DD16F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -15,6 +19,14 @@ Global
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
 		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+		{24535C3D-C44D-4394-AF77-5B87408EAC04}.Debug|AVR.ActiveCfg = Debug|AVR
+		{24535C3D-C44D-4394-AF77-5B87408EAC04}.Debug|AVR.Build.0 = Debug|AVR
+		{24535C3D-C44D-4394-AF77-5B87408EAC04}.Release|AVR.ActiveCfg = Release|AVR
+		{24535C3D-C44D-4394-AF77-5B87408EAC04}.Release|AVR.Build.0 = Release|AVR
+		{23694739-D33C-489A-A156-2F1A72DD16F0}.Debug|AVR.ActiveCfg = Debug|AVR
+		{23694739-D33C-489A-A156-2F1A72DD16F0}.Debug|AVR.Build.0 = Debug|AVR
+		{23694739-D33C-489A-A156-2F1A72DD16F0}.Release|AVR.ActiveCfg = Release|AVR
+		{23694739-D33C-489A-A156-2F1A72DD16F0}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

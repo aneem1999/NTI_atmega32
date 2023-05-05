@@ -9,6 +9,12 @@
         "servo.h": "c",
         "pwm1_interface.h": "c",
         "spi.h": "c",
-        "rfid.h": "c"
+        "rfid.h": "c",
+        "commanage.h": "c",
+        "scm_int.h": "c",
+        "freertosconfig.h": "c",
+        "task.h": "c",
+        "freertos.h": "c",
+        "seven_seg.h": "c"
     }
 }

@@ -1,3 +1,5 @@
+
+
 /***************************************************************
      @author             :    Ahmed Naeem
      @date 				 :    24 Feb 2023
@@ -70,7 +72,7 @@ typedef struct ADC_Conf
 ADC_Config_t ADC_configurations[] = {
     {ADC_Channel_0, AREF, RIGHT_ADJUSTMENT, FREE_RUNNING_MODE, DIVID_BY_128},
     {ADC_Channel_1, AREF, RIGHT_ADJUSTMENT, FREE_RUNNING_MODE, DIVID_BY_128},
-	{ADC_Channel_2, AREF, RIGHT_ADJUSTMENT, FREE_RUNNING_MODE, DIVID_BY_128},
-	{ADC_Channel_3, AREF, RIGHT_ADJUSTMENT, FREE_RUNNING_MODE, DIVID_BY_128}
+    {ADC_Channel_2, AREF, RIGHT_ADJUSTMENT, FREE_RUNNING_MODE, DIVID_BY_128},
+    {ADC_Channel_3, AREF, RIGHT_ADJUSTMENT, FREE_RUNNING_MODE, DIVID_BY_128}
 
 };

@@ -104,16 +104,16 @@ void SSD_vDisplayNum(u16 num)
 	}
 	
 	SSD_vDisplayDigit(d[0],0);
-	_delay_ms(5);
+	_delay_ms(2);
 	
 	SSD_vDisplayDigit(d[1],1);
-	_delay_ms(5);
+	_delay_ms(2);
 	
 	SSD_vDisplayDigit(d[2],2);
-	_delay_ms(5);
+	_delay_ms(2);
 	
 	SSD_vDisplayDigit(d[3],3);
-	_delay_ms(5);
+	_delay_ms(2);
 	
 		
 	

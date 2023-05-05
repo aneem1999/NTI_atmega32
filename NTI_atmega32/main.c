@@ -1,113 +1,308 @@
 
-/*
- * NTI_atmega32.c
+/**
+ * @file main.c
+ * @author Ahmed Naeem
+ * @brief
+ * @version 0.1
+ * @date 2023-05-04
  *
- * Created: 3/3/2023 10:08:32 AM
- * Author : ncm
+ * @copyright Copyright (c) 2023
+ *
  */
 
-#include "../MCAL/USART/uart_interface.h"
-#include "../HAL/LCD/LCD.h"
-#include "../HAL/LED/led.h"
-#include "../HAL/DHT11/dht.h"
-#include <stdlib.h>
 #define F_CPU 16000000U
-#include "util/delay.h"
-#include "../HAL/KEYPAD/keypad.h"
-#include "../HAL/Ultrasonic_HC_SR04/US_HC_SR04.h"
-#include "../APP/Smart_Home/Enterene/Entrance_Control.h"
-#include "../HAL/SERVO_MOTOR/servo.h"
+#include "SERVICES/SCM/SCM_int.h"
 
-#include "../HAL/RFID/RFID.h"
+#include "HAL/LED/led.h"
+#include "HAL/SSD/seven_seg.h"
+#include "HAL/LCD/LCD.h"
+#include "HAL/KEYPAD/keyPad.h"
 
-#if 0
-char str[5];
-int main()
+#include "../SERVICES/FreeRTOS/FreeRTOSConfig.h"
+#include "../SERVICES/FreeRTOS/FreeRTOS.h"
+#include "../SERVICES/FreeRTOS/task.h"
+#include "../SERVICES/FreeRTOS/semphr.h"
+#include "../SERVICES/FreeRTOS/queue.h"
+#include "../SERVICES/FreeRTOS/event_groups.h"
+
+char Password[6] = {1, 2, 3, 4, 5, 6};
+
+/*********************************************************
+ *  queues
+ */
+QueueHandle_t passwordQ, equationQ;
+
+/*********************************************************
+ *  event groups
+ */
+EventGroupHandle_t CheckPasswordEventHandle;
+/*********************************************************
+ *  Semphores
+ */
+SemaphoreHandle_t keypadSemaphore;
+SemaphoreHandle_t LCDSemaphore;
+
+/************************************************************
+ * 	Tasks
+ */
+BaseType_t CheckPasswordReturned;
+TaskHandle_t CheckPasswordHandle = NULL;
+
+BaseType_t getPasswordReturned;
+TaskHandle_t getPasswordHandle = NULL;
+
+BaseType_t getEquationReturned;
+TaskHandle_t getEquationHandle = NULL;
+
+BaseType_t calEquationReturned;
+TaskHandle_t calEquationHandle = NULL;
+
+void getPassword(void *ptr)
 {
-	dio_vidConfigChannel(DIO_PORTA, DIO_PIN4, OUTPUT);
-	dio_vidConfigChannel(DIO_PORTA, DIO_PIN5, OUTPUT);
-	dio_vidConfigChannel(DIO_PORTA, DIO_PIN6, OUTPUT);
 
-	SPI_Init();
-	LCD_Init();
-	mcrf522_init();
-	u8 byte;
-	u8 buffer[4];
-	GIE_ENABLE();
+	u8 pass;
+	static u8 index = 0;
 
 	while (1)
 	{
-		byte = DetectCard();
-		LCD_ClearDisplay();
-		LCD_GoToXY(0, 0);
-		if (byte == 1)
-		{
-			dio_vidWriteChannel(DIO_PORTA, DIO_PIN4, STD_HIGH);
-			GetCardId(buffer);
+		vTaskSuspend(getEquationHandle);
+		vTaskSuspend(CheckPasswordHandle);
+		vTaskSuspend(calEquationHandle);
 
-			for (u8 i = 0; i < 4; i++)
+		/* Take Password from keypad*/
+		xSemaphoreTake(LCDSemaphore, 10);
+		if (index == 0)
+		{
+			LCD_ClearDisplay();
+			LCD_WriteString("Enter Password :");
+		}
+
+		xSemaphoreTake(keypadSemaphore, 10);
+		while (GetKeyPressed(&pass, 0) != KEY_PRESSED)
+			;
+		xSemaphoreGive(keypadSemaphore);
+		LCD_GoToXY(1, index + 5);
+		LCD_WriteData(pass);
+		xSemaphoreGive(LCDSemaphore);
+
+		index++;
+		xQueueSend(passwordQ, &pass, 10);
+
+		if (index >= 6)
+		{
+
+			vTaskResume(CheckPasswordHandle);
+			index = 0;
+
+			vTaskSuspend(getPasswordHandle);
+		}
+
+		vTaskDelay(200);
+	}
+}
+
+void checkPassword(void *ptr)
+{
+
+	char temp;
+	u8 index = 0, flag = 0;
+	while (1)
+	{
+		vTaskSuspend(calEquationHandle);
+
+		LCD_ClearDisplay();
+
+		for (index = 0; index < 6; index++)
+		{
+			xQueueReceive(passwordQ, &temp, 10);
+
+			if (Password[index] == (temp - 48))
 			{
-				itoa(buffer[i], str, 10);
-				LCD_WriteString(str);
-				LCD_WriteData(' ');
+
+				flag++;
+				xEventGroupSetBits(CheckPasswordEventHandle, (1 << index));
+			}
+			else
+			{
 			}
 		}
-		_delay_ms(500);
-	}
-#endif
 
-#if 0
-	u8 k = 0;
-
-	while (1)
-	{
-		char name[16];
-		LCD_ClearDisplay();
-		LCD_GoToXY(0, 0);
-
-		k = Take_Compare_RFID(name);
-		if (k != 0xff)
+		if (xEventGroupGetBits(CheckPasswordEventHandle) == 0x3F)
+		// if (flag >= 5)
 		{
-			LCD_WriteString(NAME_Arr[k]);
+			/* true password message */
+			xSemaphoreTake(LCDSemaphore, 10);
+			vTaskDelay(500);
+			LCD_ClearDisplay();
+			LCD_WriteString("True Password :");
+
+			xSemaphoreGive(LCDSemaphore);
+			xEventGroupClearBits(CheckPasswordEventHandle, 0x3F);
+
+			vTaskDelay(1000);
+			vTaskResume(getEquationHandle);
+
+			flag = 0;
 		}
 		else
 		{
-			LCD_WriteString("ERROR");
+			/* wrong password message */
+			xSemaphoreTake(LCDSemaphore, 10);
+			LCD_ClearDisplay();
+			LCD_WriteString("Wrong Password :");
+			xSemaphoreGive(LCDSemaphore);
+
+			xEventGroupClearBits(CheckPasswordEventHandle, 0x3F);
+
+			vTaskDelay(1000);
+
+			vTaskResume(getPasswordHandle);
 		}
-		_delay_ms(500);
+		vTaskSuspend(CheckPasswordHandle);
+
+		vTaskDelay(1000);
 	}
 }
-#endif
 
-#if 1
+void getEquation(void *ptr)
+{
+
+	u8 index = 0;
+	u8 temp;
+	while (1)
+	{
+		xSemaphoreTake(LCDSemaphore, 10);
+		xSemaphoreTake(keypadSemaphore, 10);
+
+		if (index == 0)
+		{
+			LCD_ClearDisplay();
+			LCD_WriteString(" Enter Equation ");
+			LCD_GoToXY(1, 0);
+		}
+		while (GetKeyPressed(&temp, 0) != KEY_PRESSED)
+			;
+		LCD_WriteData(temp);
+		index++;
+		xQueueSend(equationQ, &temp, 10);
+
+		xSemaphoreGive(keypadSemaphore);
+
+		xSemaphoreGive(LCDSemaphore);
+
+		if (index == 4)
+		{
+			vTaskResume(calEquationHandle);
+			index = 0;
+		}
+		vTaskDelay(1000);
+	}
+}
+
+void calEquation(void *ptr)
+{
+	u8 EquationArr[6], temp;
+	while (1)
+	{
+		for (u8 i = 0; i < 4; i++)
+		{
+			EquationArr[i] = xQueueReceive(equationQ, &EquationArr[i], 10);
+		}
+			LCD_WriteData(EquationArr[0]);
+			
+
+		switch (EquationArr[1])
+		{
+		case 'A':
+
+			LCD_WriteData(EquationArr[0] + EquationArr[2]);
+
+			break;
+		case 'B':
+
+			LCD_WriteData(EquationArr[0] - EquationArr[2] );
+
+			break;
+		case 'C':
+
+			LCD_WriteData((EquationArr[0] * EquationArr[2]) );
+
+			break;
+
+		default:
+
+			LCD_ClearDisplay();
+			LCD_WriteString("Try again  ");
+			LCD_WriteData(EquationArr[1]);
+
+			break;
+		}
+
+		xSemaphoreTake(keypadSemaphore, 10);
+		while (GetKeyPressed(&temp, 0) != KEY_PRESSED)
+			;
+		vTaskResume(getEquationHandle);
+		xSemaphoreGive(keypadSemaphore);
+
+		vTaskDelay(1000);
+	}
+}
 
 int main()
 {
-	Entrance_Init();
+
+	LCD_Init();
+	KeyPad_init();
+
+	/* Create the task, storing the handle. */
+	CheckPasswordReturned = xTaskCreate(
+		checkPassword,		   /* Function that implements the task. */
+		"CheckPassword",	   /* Text name for the task. */
+		100,				   /* Stack size in words, not bytes. */
+		(void *)1,			   /* Parameter passed into the task. */
+		2,					   /* Priority at which the task is created. */
+		&CheckPasswordHandle); /* Used to pass out the created task's handle. */
+
+	/* Create the task, storing the handle. */
+	getPasswordReturned = xTaskCreate(
+		getPassword,		 /* Function that implements the task. */
+		"GetPassword",		 /* Text name for the task. */
+		100,				 /* Stack size in words, not bytes. */
+		(void *)1,			 /* Parameter passed into the task. */
+		2,					 /* Priority at which the task is created. */
+		&getPasswordHandle); /* Used to pass out the created task's handle. */
+
+	/* Create the task, storing the handle. */
+	getEquationReturned = xTaskCreate(
+		getEquation,		 /* Function that implements the task. */
+		"GetEquation,",		 /* Text name for the task. */
+		100,				 /* Stack size in words, not bytes. */
+		(void *)1,			 /* Parameter passed into the task. */
+		1,					 /* Priority at which the task is created. */
+		&getEquationHandle); /* Used to pass out the created task's handle. */
+
+	/* Create the task, storing the handle. */
+	calEquationReturned = xTaskCreate(
+		calEquation,		 /* Function that implements the task. */
+		"calEquation",		 /* Text name for the task. */
+		100,				 /* Stack size in words, not bytes. */
+		(void *)1,			 /* Parameter passed into the task. */
+		1,					 /* Priority at which the task is created. */
+		&calEquationHandle); /* Used to pass out the created task's handle. */
+
+	/* creat Queue*/
+	passwordQ = xQueueCreate(6, 1);
+	equationQ = xQueueCreate(4, 1);
+
+	/*Create semphores*/
+	keypadSemaphore = xSemaphoreCreateBinary();
+	LCDSemaphore = xSemaphoreCreateBinary();
+	/* Creat event Group */
+	CheckPasswordEventHandle = xEventGroupCreate();
+
+	vTaskStartScheduler();
 
 	while (1)
 	{
-
-		Entrance_Start();
 	}
 }
-
-#endif
-
-#if 0
-
-int main()
-{
-	SERVO_voidInit();
-	u8 a = 10;
-	while (1)
-	{
-
-		SERVO_voidGotoAngle(a);
-		a += 10;
-
-		_delay_ms(1000);
-	}
-}
-
-#endif

@@ -170,6 +170,15 @@
     <Compile Include="APP\Demo_projects\USmain.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="APP\Rtos_Demos\mainTrfLights_freertos.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\EnterenceSystem\system.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\Smart_Home\EnterenceSystem\system_cfg.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="APP\Smart_Home\Enterene\Enterence_Control.c">
       <SubType>compile</SubType>
     </Compile>
@@ -431,10 +440,106 @@
     <Compile Include="MCAL\USART\uart_interface.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="SERVICES\COM_MANAGER\ComManage.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\COM_MANAGER\ComManage.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="SERVICES\Delay\TD_delay.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SERVICES\Delay\TD_delay.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\atomic.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\croutine.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\croutine.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\deprecated_definitions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\event_groups.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\event_groups.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\FreeRTOS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\FreeRTOSConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\heap_4.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\list.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\list.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\message_buffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\mpu_prototypes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\mpu_wrappers.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\mpu_wrappers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\port.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\portable.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\portmacro.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\projdefs.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\queue.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\queue.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\semphr.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\StackMacros.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\stack_macros.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\stream_buffer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\stream_buffer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\task.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\tasks.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\timers.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SERVICES\FreeRTOS\timers.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SERVICES\PWM1\pwm1.c">
@@ -455,9 +560,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP\Demo_projects" />
+    <Folder Include="APP\Rtos_Demos" />
     <Folder Include="APP\Smart_Home" />
     <Folder Include="APP\Smart_Home\Enterene" />
     <Folder Include="APP\Smart_Home\Home_Control" />
+    <Folder Include="APP\Smart_Home\EnterenceSystem" />
     <Folder Include="HAL\Button" />
     <Folder Include="HAL\KEYPAD" />
     <Folder Include="HAL\LCD" />
@@ -488,6 +595,8 @@
     <Folder Include="APP" />
     <Folder Include="SERVICES" />
     <Folder Include="SERVICES\Delay" />
+    <Folder Include="SERVICES\COM_MANAGER" />
+    <Folder Include="SERVICES\FreeRTOS" />
     <Folder Include="SERVICES\SW_ICU" />
     <Folder Include="SERVICES\PWM1" />
   </ItemGroup>

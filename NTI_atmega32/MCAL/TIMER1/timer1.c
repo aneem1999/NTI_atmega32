@@ -139,6 +139,7 @@ void T1_voidEnable_InterruptIC(void (*copyofFun)())
     T1_IC_CallBackFun = copyofFun;
 }
 
+/*
 void __vector_9(void) __attribute__((signal));
 void __vector_9(void)
 {
@@ -174,3 +175,4 @@ void __vector_(void)
         T1_IC_CallBackFun();
     }
 }
+*/

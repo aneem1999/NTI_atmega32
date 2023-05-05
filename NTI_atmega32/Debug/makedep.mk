@@ -24,6 +24,10 @@ APP\Demo_projects\TWI_tx.c
 
 APP\Demo_projects\USmain.c
 
+APP\Rtos_Demos\mainTrfLights_freertos.c
+
+APP\Smart_Home\EnterenceSystem\system.c
+
 APP\Smart_Home\Enterene\Enterence_Control.c
 
 APP\Smart_Home\Enterene\password.c
@@ -100,7 +104,29 @@ MCAL\USART\uart.c
 
 MCAL\USART\uart_cf.c
 
+SERVICES\COM_MANAGER\ComManage.c
+
 SERVICES\Delay\TD_delay.c
+
+SERVICES\FreeRTOS\croutine.c
+
+SERVICES\FreeRTOS\event_groups.c
+
+SERVICES\FreeRTOS\heap_4.c
+
+SERVICES\FreeRTOS\list.c
+
+SERVICES\FreeRTOS\mpu_wrappers.c
+
+SERVICES\FreeRTOS\port.c
+
+SERVICES\FreeRTOS\queue.c
+
+SERVICES\FreeRTOS\stream_buffer.c
+
+SERVICES\FreeRTOS\tasks.c
+
+SERVICES\FreeRTOS\timers.c
 
 SERVICES\PWM1\pwm1.c
 

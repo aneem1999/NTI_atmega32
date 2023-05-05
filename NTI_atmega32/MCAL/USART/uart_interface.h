@@ -30,9 +30,6 @@ typedef enum
 /*Baud Rate Calculation */
 #define UBRR_VAL(_BAUD) (u8)(((u64)CPU_CLK / (u32)(16 * _BAUD)) - 1)
 
-/*************** UART Default stop condition ******************/
-#define Default_STOP '\r'
-
 /*************************************************************
  *   ------------------- UART APIs -------------------
  *************************************************************/
@@ -60,12 +57,16 @@ UART_ERROR_t UART_TransmitBusyWait(u8 data);
 UART_ERROR_t UART_ReceiveBusyWait(u8 *data);
 
 void UART_TransmitString_NoBlock(u8 *str);
-void UART_ReceiveString_NoBlock(u8 *str);
+void UART_ReceiveString_NoBlock(u8 **str);
 
 /* Enable Interrupts and set call back function */
 void UART_RXC_IEN(void (*callbackfun)());
 void UART_TXC_IEN(void (*callbackfun)());
 void UART_UDRE_IEN(void (*callbackfun)());
+
+void UART_Set_Data_Reg(u8 value);
+
+u8 UART_Read_Data_Reg(void);
 
 UART_ERROR_t UART_Receive_No_Block(u8 *data);
 
